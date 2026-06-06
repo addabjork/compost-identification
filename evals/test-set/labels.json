@@ -21,7 +21,7 @@
       { "name": "paper coffee cup", "category": "landfill" },
       { "name": "aluminum cans", "category": "recyclable" },
       { "name": "plastic straws", "category": "landfill" },
-      { "name": "paper bag", "category": "compostable" },
+      { "name": "paper bag", "category": "recyclable" },
       { "name": "food scraps", "category": "compostable" },
       { "name": "cardboard box", "category": "recyclable" }
     ]

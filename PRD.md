@@ -51,26 +51,31 @@ An eval suite that benchmarks vision models on their ability to identify and cla
 - **Results dashboard**: Next.js app deployed on Vercel showing model comparison tables, per-photo breakdowns, and summary metrics. Accessible to the full team.
 - **Fixture set**: Curated set of photos of NYC public trash cans with human-labeled ground truth for each visible item.
 
-### Classification taxonomy
+### Classification taxonomy (NYC rules)
 
-Each item detected should be classified into one of three categories:
+Each item detected should be classified into one of three categories per NYC Department of Sanitation rules. See `waste_sorting_guide.md` for the full reference.
 
 | Category | Examples | Classification |
 |----------|----------|---------------|
-| Food scraps | Banana peel, apple core, coffee grounds | Compostable |
-| Yard/plant waste | Leaves, grass, flowers | Compostable |
-| Uncoated paper | Paper towels, napkins, newspaper | Compostable |
+| Food scraps | Fruit, vegetables, meat, bones, dairy, cooked food | Compostable |
+| Coffee/tea | Coffee grounds, filters, tea bags | Compostable |
+| Food-soiled paper | Napkins, paper towels, paper plates, pizza boxes | Compostable |
+| Yard waste | Leaves, grass clippings, twigs, plants | Compostable |
 | Natural materials | Eggshells, nutshells, wood chips | Compostable |
-| Cardboard | Boxes, tubes, shipping material | Recyclable |
-| Plastic bottles/containers | Water bottles, soda bottles, detergent bottles | Recyclable |
-| Metal | Aluminum cans, tin cans, foil trays | Recyclable |
+| Paper & cardboard | Newspapers, shipping boxes, cartons, office paper, paper bags | Recyclable |
+| Metal | Aluminum cans, food cans, tin foil, small metal containers | Recyclable |
 | Glass | Bottles, jars | Recyclable |
-| Paper (clean) | Office paper, magazines, mail | Recyclable |
+| Plastic bottles/containers | Bottles and containers with recycling symbol | Recyclable |
 | Plastic bags/film | Grocery bags, shrink wrap | Landfill |
-| Styrofoam | Containers, cups, packing peanuts | Landfill |
-| Coated/treated paper | Waxed cups, grease-soaked paper | Landfill |
-| Synthetic materials | Clothing, rubber, electronics | Landfill |
-| Mixed/contaminated items | Food-soiled plastic, greasy pizza box | Landfill |
+| Styrofoam/foam | Containers, cups, packing peanuts | Landfill |
+| Plastic utensils/straws | Forks, knives, straws, stirrers | Landfill |
+| Coated paper | Waxed cups, coated containers | Landfill |
+| Dirty paper towels | Oil-stained, heavily soiled | Landfill |
+| Synthetic materials | Clothing, rubber, diapers | Landfill |
+| Ceramics/mirrors/bulbs | Non-recyclable household items | Landfill |
+| Special waste | Batteries, electronics, paint, chemicals | Landfill* |
+
+\* Special waste requires separate disposal but is classified as landfill for our purposes since it cannot go in recycling or compost bins.
 | Plastic utensils/straws | Forks, knives, straws, stirrers | Landfill |
 
 ### Success criteria for Phase 1

@@ -30,19 +30,22 @@ const RESULTS_DIR = path.resolve(__dirname, '../evals/results');
 // ── Prompt (identical across all models) ─────────────────────────────────────
 
 const PROMPT = `Analyze this photo and identify all visible waste items.
+Classify each item according to New York City waste sorting rules.
 
 For each item return:
 - name: descriptive name of the item (e.g. "banana peel", "plastic water bottle", "aluminum can")
 - category: one of "compostable", "recyclable", or "landfill"
 - reason: brief explanation of the classification
 
-Category definitions:
-- compostable: items that break down in a compost bin — fruit/vegetable scraps, coffee grounds/filters, tea bags (paper), eggshells, yard waste, paper towels, uncoated paper, leaves, grass clippings, nutshells, wood chips, food-soiled paper (napkins)
-- recyclable: items accepted by municipal recycling — clean plastic bottles/containers, aluminum/tin cans, glass bottles/jars, cardboard, clean paper, metal foil trays
-- landfill: everything else — plastic bags/film, styrofoam, coated/waxed paper, plastic utensils/straws, synthetic materials, clothing, electronics, food-contaminated plastic, mixed/non-separable waste
+Category definitions (NYC rules):
+- compostable: organic waste accepted by NYC curbside composting — fruit/vegetable scraps, meat, bones, dairy, cooked food, coffee grounds/filters, tea bags, eggshells, food-soiled paper (napkins, paper towels, paper plates, pizza boxes), yard waste (leaves, grass clippings, twigs, plants)
+- recyclable: items accepted by NYC curbside recycling, must be clean/dry/empty — paper & cardboard (newspapers, shipping boxes, cartons, office paper, paper bags), metal (aluminum cans, food cans, tin foil, small metal containers), glass (bottles, jars), plastic bottles and containers with recycling symbol
+- landfill: everything else — dirty paper towels, diapers, foam/styrofoam, ceramics, mirrors, light bulbs, plastic bags/film, plastic utensils/straws, synthetic materials, clothing, rubber, oil-stained paper, mixed/non-separable waste
+
+Note: Batteries, electronics, paint, and hazardous materials are "special waste" — classify these as "landfill" since they cannot go in regular recycling or compost.
 
 Return ONLY a valid JSON array, no other text.
-Example: [{"name":"banana peel","category":"compostable","reason":"Fruit scraps break down in compost"},{"name":"plastic bag","category":"landfill","reason":"Plastic film is not recyclable or compostable"},{"name":"aluminum can","category":"recyclable","reason":"Metal cans are accepted by municipal recycling"}]`;
+Example: [{"name":"banana peel","category":"compostable","reason":"Food scraps are accepted by NYC composting"},{"name":"plastic bag","category":"landfill","reason":"Plastic film is not recyclable or compostable in NYC"},{"name":"aluminum can","category":"recyclable","reason":"Metal cans are accepted by NYC curbside recycling"}]`;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
