@@ -113,6 +113,12 @@ export default function Home() {
             View Eval Results
           </Link>
           <a
+            href="/HOPPER Pitch.html"
+            className="rounded-lg border border-green-700 px-5 py-2.5 text-sm font-medium text-green-300 hover:border-green-500 transition-colors"
+          >
+            DSNY Pitch Deck
+          </a>
+          <a
             href="https://github.com/addabjork/compost-identification"
             target="_blank"
             rel="noopener noreferrer"
