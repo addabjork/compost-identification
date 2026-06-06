@@ -54,5 +54,212 @@
       { "name": "plastic bottles", "category": "recyclable" },
       { "name": "cardboard", "category": "recyclable" }
     ]
+  },
+  {
+    "id": "IMG_3670",
+    "photo": "IMG_3670.jpeg",
+    "ground_truth": [
+      { "name": "paper coffee cups", "category": "landfill" },
+      { "name": "plastic cup with straw", "category": "landfill" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "brown paper bags", "category": "recyclable" },
+      { "name": "wooden spoon", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" },
+      { "name": "plastic lid", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3671",
+    "photo": "IMG_3671.jpeg",
+    "ground_truth": [
+      { "name": "paper coffee cups", "category": "landfill" },
+      { "name": "plastic cup with straw", "category": "landfill" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "brown paper bags", "category": "recyclable" },
+      { "name": "wooden spoon", "category": "compostable" },
+      { "name": "plastic lid", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3673",
+    "photo": "IMG_3673.jpeg",
+    "ground_truth": [
+      { "name": "plastic cups", "category": "landfill" },
+      { "name": "plastic straw", "category": "landfill" },
+      { "name": "dirty cloth rag", "category": "landfill" },
+      { "name": "plastic lids", "category": "landfill" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3674",
+    "photo": "IMG_3674.jpeg",
+    "ground_truth": [
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "paper sign", "category": "recyclable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3677",
+    "photo": "IMG_3677.jpeg",
+    "ground_truth": [
+      { "name": "pizza box", "category": "compostable" },
+      { "name": "plastic bag", "category": "landfill" },
+      { "name": "aluminum can", "category": "recyclable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3678",
+    "photo": "IMG_3678.jpeg",
+    "ground_truth": [
+      { "name": "aluminum foil", "category": "recyclable" },
+      { "name": "brown paper bags", "category": "recyclable" },
+      { "name": "food wrapper", "category": "landfill" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3680",
+    "photo": "IMG_3680.jpeg",
+    "ground_truth": [
+      { "name": "food-soiled paper plates", "category": "compostable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "aluminum foil", "category": "recyclable" },
+      { "name": "paper napkins", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3681",
+    "photo": "IMG_3681.jpeg",
+    "ground_truth": [
+      { "name": "pizza crusts", "category": "compostable" },
+      { "name": "food-soiled paper plates", "category": "compostable" },
+      { "name": "glass beer bottle", "category": "recyclable" },
+      { "name": "pizza slices", "category": "compostable" },
+      { "name": "paper napkins", "category": "compostable" },
+      { "name": "bottle cap", "category": "recyclable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3685",
+    "photo": "IMG_3685.jpeg",
+    "ground_truth": [
+      { "name": "plastic water bottle", "category": "recyclable" },
+      { "name": "candy bar wrapper", "category": "landfill" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3686",
+    "photo": "IMG_3686.jpeg",
+    "ground_truth": [
+      { "name": "plastic soda bottle", "category": "recyclable" },
+      { "name": "chip bag", "category": "landfill" },
+      { "name": "cardboard box", "category": "recyclable" },
+      { "name": "plastic container", "category": "landfill" },
+      { "name": "paper receipt", "category": "recyclable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3687",
+    "photo": "IMG_3687.jpeg",
+    "ground_truth": [
+      { "name": "Dunkin paper bag", "category": "recyclable" },
+      { "name": "chip bag", "category": "landfill" },
+      { "name": "plastic cup", "category": "landfill" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "glass jar", "category": "recyclable" }
+    ]
+  },
+  {
+    "id": "IMG_3688",
+    "photo": "IMG_3688.jpeg",
+    "ground_truth": [
+      { "name": "brown paper bag", "category": "recyclable" },
+      { "name": "aluminum can", "category": "recyclable" },
+      { "name": "paper cup", "category": "landfill" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3689",
+    "photo": "IMG_3689.jpeg",
+    "ground_truth": [
+      { "name": "plastic cup with lid", "category": "landfill" },
+      { "name": "paper with QR code", "category": "recyclable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "napkins", "category": "compostable" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3691",
+    "photo": "IMG_3691.jpeg",
+    "ground_truth": [
+      { "name": "plastic cups", "category": "landfill" },
+      { "name": "plastic water bottle", "category": "recyclable" },
+      { "name": "Dunkin cup", "category": "landfill" },
+      { "name": "plastic bag", "category": "landfill" },
+      { "name": "paper bag", "category": "recyclable" },
+      { "name": "pizza box", "category": "compostable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "aluminum can", "category": "recyclable" },
+      { "name": "cardboard carton", "category": "recyclable" },
+      { "name": "plastic straws", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3697",
+    "photo": "IMG_3697.jpeg",
+    "ground_truth": [
+      { "name": "plastic cup with straw", "category": "landfill" },
+      { "name": "chip bag", "category": "landfill" },
+      { "name": "paper napkins", "category": "compostable" },
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "paper coffee cup", "category": "landfill" },
+      { "name": "brown paper bag", "category": "recyclable" },
+      { "name": "plastic bottle", "category": "recyclable" },
+      { "name": "banana peel", "category": "compostable" }
+    ]
+  },
+  {
+    "id": "IMG_3700",
+    "photo": "IMG_3700.jpeg",
+    "ground_truth": [
+      { "name": "cardboard", "category": "recyclable" },
+      { "name": "plastic bag", "category": "landfill" },
+      { "name": "crushed beer cans", "category": "recyclable" },
+      { "name": "cigarette butts", "category": "landfill" },
+      { "name": "plastic bag liner", "category": "landfill" }
+    ]
+  },
+  {
+    "id": "IMG_3706",
+    "photo": "IMG_3706.jpeg",
+    "ground_truth": [
+      { "name": "cardboard box", "category": "recyclable" },
+      { "name": "plastic bag", "category": "landfill" },
+      { "name": "paper napkins", "category": "compostable" }
+    ]
+  },
+  {
+    "id": "IMG_3708",
+    "photo": "IMG_3708.jpeg",
+    "ground_truth": [
+      { "name": "plastic cups", "category": "landfill" },
+      { "name": "plastic water bottle", "category": "recyclable" },
+      { "name": "aluminum can", "category": "recyclable" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "plastic lids", "category": "landfill" },
+      { "name": "candy wrapper", "category": "landfill" }
+    ]
   }
 ]

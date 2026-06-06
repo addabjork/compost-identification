@@ -1,22 +1,22 @@
 [
   {
     "model": "claude",
-    "items_identified": 0.8070436507936508,
-    "classification_accuracy": 0.6538690476190476,
+    "items_identified": 0.8260361552028219,
+    "classification_accuracy": 0.6937169312169312,
     "compostable": {
-      "recall": 0.625,
-      "precision": 0.3
+      "recall": 0.4166666666666667,
+      "precision": 0.2842592592592592
     },
     "recyclable": {
-      "recall": 0.3333333333333333,
-      "precision": 0.18333333333333335
+      "recall": 0.4629629629629629,
+      "precision": 0.3064814814814815
     },
     "landfill": {
-      "recall": 0.625,
-      "precision": 0.23472222222222222
+      "recall": 0.6046296296296297,
+      "precision": 0.5632716049382716
     },
-    "avg_latency_ms": 35257.5,
-    "failure_rate": 0,
+    "avg_latency_ms": 15257.555555555555,
+    "failure_rate": 0.18181818181818182,
     "per_photo": [
       {
         "photo_id": "photo_01",
@@ -97,27 +97,307 @@
         "matched": 7,
         "ground_truth_count": 8,
         "detected_count": 11
+      },
+      {
+        "photo_id": "IMG_3670",
+        "items_identified": 0.8571428571428571,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.3333333333333333
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.4,
+          "precision": 1
+        },
+        "matched": 6,
+        "ground_truth_count": 7,
+        "detected_count": 7
+      },
+      {
+        "photo_id": "IMG_3671",
+        "items_identified": 0.8333333333333334,
+        "classification_accuracy": 0.6,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.25
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 5,
+        "ground_truth_count": 6,
+        "detected_count": 8
+      },
+      {
+        "photo_id": "IMG_3673",
+        "items_identified": 1,
+        "classification_accuracy": 0.4,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.4,
+          "precision": 0.5
+        },
+        "matched": 5,
+        "ground_truth_count": 5,
+        "detected_count": 7
+      },
+      {
+        "photo_id": "IMG_3674",
+        "items_identified": 1,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 0.3333333333333333
+        },
+        "matched": 4,
+        "ground_truth_count": 4,
+        "detected_count": 7
+      },
+      {
+        "photo_id": "IMG_3677",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.75,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 6
+      },
+      {
+        "photo_id": "IMG_3678",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.3333333333333333
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.3333333333333333
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 9
+      },
+      {
+        "photo_id": "IMG_3680",
+        "items_identified": 0.8,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 1
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3681",
+        "items_identified": 1,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "matched": 7,
+        "ground_truth_count": 7,
+        "detected_count": 9
+      },
+      {
+        "photo_id": "IMG_3685",
+        "items_identified": 0.6666666666666666,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 2,
+        "ground_truth_count": 3,
+        "detected_count": 2
+      },
+      {
+        "photo_id": "IMG_3686",
+        "items_identified": 0.8333333333333334,
+        "classification_accuracy": 0.8,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.75
+        },
+        "landfill": {
+          "recall": 0.3333333333333333,
+          "precision": 0.3333333333333333
+        },
+        "matched": 5,
+        "ground_truth_count": 6,
+        "detected_count": 7
+      },
+      {
+        "photo_id": "IMG_3687",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.75,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "IMG_3688",
+        "items_identified": 0.75,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 3,
+        "ground_truth_count": 4,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3689",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "IMG_3691",
+        "items_identified": 0.7,
+        "classification_accuracy": 0.5714285714285714,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 0.3333333333333333
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.2
+        },
+        "landfill": {
+          "recall": 0.25,
+          "precision": 0.2
+        },
+        "matched": 7,
+        "ground_truth_count": 10,
+        "detected_count": 18
       }
     ]
   },
   {
     "model": "gpt4o",
-    "items_identified": 0.6150793650793651,
-    "classification_accuracy": 0.80625,
+    "items_identified": 0.5775573192239859,
+    "classification_accuracy": 0.7810185185185186,
     "compostable": {
-      "recall": 0.375,
-      "precision": 0.5
+      "recall": 0.25925925925925924,
+      "precision": 0.3611111111111111
     },
     "recyclable": {
-      "recall": 0.3958333333333333,
-      "precision": 0.41666666666666663
+      "recall": 0.4444444444444444,
+      "precision": 0.3814814814814815
     },
     "landfill": {
-      "recall": 0.5666666666666667,
-      "precision": 0.6041666666666666
+      "recall": 0.3638888888888889,
+      "precision": 0.4768518518518518
     },
-    "avg_latency_ms": 2544.5,
-    "failure_rate": 0,
+    "avg_latency_ms": 3827.722222222222,
+    "failure_rate": 0.18181818181818182,
     "per_photo": [
       {
         "photo_id": "photo_01",
@@ -198,27 +478,307 @@
         "matched": 5,
         "ground_truth_count": 8,
         "detected_count": 6
+      },
+      {
+        "photo_id": "IMG_3670",
+        "items_identified": 0.7142857142857143,
+        "classification_accuracy": 0.8,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.8,
+          "precision": 0.6666666666666666
+        },
+        "matched": 5,
+        "ground_truth_count": 7,
+        "detected_count": 7
+      },
+      {
+        "photo_id": "IMG_3671",
+        "items_identified": 0.5,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.25,
+          "precision": 0.5
+        },
+        "matched": 3,
+        "ground_truth_count": 6,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3673",
+        "items_identified": 0.6,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.4,
+          "precision": 1
+        },
+        "matched": 3,
+        "ground_truth_count": 5,
+        "detected_count": 3
+      },
+      {
+        "photo_id": "IMG_3674",
+        "items_identified": 0.75,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 1
+        },
+        "matched": 3,
+        "ground_truth_count": 4,
+        "detected_count": 3
+      },
+      {
+        "photo_id": "IMG_3677",
+        "items_identified": 0.6,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 3,
+        "ground_truth_count": 5,
+        "detected_count": 3
+      },
+      {
+        "photo_id": "IMG_3678",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.75,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "IMG_3680",
+        "items_identified": 0.4,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0.6666666666666666,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 2,
+        "ground_truth_count": 5,
+        "detected_count": 2
+      },
+      {
+        "photo_id": "IMG_3681",
+        "items_identified": 0.5714285714285714,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 4,
+        "ground_truth_count": 7,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3685",
+        "items_identified": 0.3333333333333333,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 1,
+        "ground_truth_count": 3,
+        "detected_count": 2
+      },
+      {
+        "photo_id": "IMG_3686",
+        "items_identified": 0.6666666666666666,
+        "classification_accuracy": 0.75,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.6666666666666666,
+          "precision": 1
+        },
+        "landfill": {
+          "recall": 0.3333333333333333,
+          "precision": 0.5
+        },
+        "matched": 4,
+        "ground_truth_count": 6,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3687",
+        "items_identified": 0.4,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.3333333333333333
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 2,
+        "ground_truth_count": 5,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "IMG_3688",
+        "items_identified": 0.5,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 2,
+        "ground_truth_count": 4,
+        "detected_count": 2
+      },
+      {
+        "photo_id": "IMG_3689",
+        "items_identified": 0.6,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 3,
+        "ground_truth_count": 5,
+        "detected_count": 3
+      },
+      {
+        "photo_id": "IMG_3691",
+        "items_identified": 0.5,
+        "classification_accuracy": 0.2,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.25,
+          "precision": 0.2
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 5,
+        "ground_truth_count": 10,
+        "detected_count": 6
       }
     ]
   },
   {
     "model": "gemini",
-    "items_identified": 0.15625,
-    "classification_accuracy": 0.15,
+    "items_identified": 0.2652777777777778,
+    "classification_accuracy": 0.27175925925925926,
     "compostable": {
-      "recall": 0,
-      "precision": 0
+      "recall": 0.08333333333333333,
+      "precision": 0.061111111111111116
     },
     "recyclable": {
-      "recall": 0.125,
-      "precision": 0.125
+      "recall": 0.1388888888888889,
+      "precision": 0.10555555555555556
     },
     "landfill": {
-      "recall": 0.125,
-      "precision": 0.05
+      "recall": 0.2361111111111111,
+      "precision": 0.20555555555555557
     },
-    "avg_latency_ms": 14481.25,
-    "failure_rate": 0.75,
+    "avg_latency_ms": 12016.111111111111,
+    "failure_rate": 0.6818181818181818,
     "per_photo": [
       {
         "photo_id": "photo_01",
@@ -299,6 +859,286 @@
         "matched": 0,
         "ground_truth_count": 8,
         "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3670",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 7,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3671",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 6,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3673",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 5,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3674",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 4,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3677",
+        "items_identified": 0.6,
+        "classification_accuracy": 0.6666666666666666,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 3,
+        "ground_truth_count": 5,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "IMG_3678",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.3333333333333333
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.16666666666666666
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 10
+      },
+      {
+        "photo_id": "IMG_3680",
+        "items_identified": 0.8,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.6
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 1
+        },
+        "matched": 4,
+        "ground_truth_count": 5,
+        "detected_count": 6
+      },
+      {
+        "photo_id": "IMG_3681",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 7,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3685",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 3,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3686",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 6,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3687",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 5,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "IMG_3688",
+        "items_identified": 0.75,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "matched": 3,
+        "ground_truth_count": 4,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3689",
+        "items_identified": 0.4,
+        "classification_accuracy": 0.5,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 2,
+        "ground_truth_count": 5,
+        "detected_count": 4
+      },
+      {
+        "photo_id": "IMG_3691",
+        "items_identified": 0.8,
+        "classification_accuracy": 0.625,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.4
+        },
+        "landfill": {
+          "recall": 0.75,
+          "precision": 0.3333333333333333
+        },
+        "matched": 8,
+        "ground_truth_count": 10,
+        "detected_count": 14
       }
     ]
   }
