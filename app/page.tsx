@@ -154,14 +154,14 @@ export default function Home() {
 
       {/* Hardware */}
       <section className="mb-16">
-        <SectionHeading>Hardware Prototype</SectionHeading>
+        <SectionHeading>Hardware Design Proposal</SectionHeading>
         <div className="grid items-center gap-8 sm:grid-cols-2">
           <div>
             <p className="leading-relaxed text-gray-300">
-              A compact, IP67-rated camera module designed to clamp onto the
-              inner rim of existing city trash cans. It captures images via a
-              Raspberry Pi Camera Module V2 and transmits data over LTE-M
-              cellular using an Adafruit FONA 4G modem.
+              A proposed design for a compact, IP67-rated camera module that
+              clamps onto the inner rim of existing city trash cans. It would
+              capture images via a Raspberry Pi Camera Module V2 and transmit
+              data over LTE-M cellular using an Adafruit FONA 4G modem.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-gray-400">
               <li>IP67 waterproof enclosure with polycarbonate lens window</li>
