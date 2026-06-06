@@ -225,21 +225,49 @@
   {
     "id": "IMG_3697",
     "photo": "IMG_3697.jpeg",
-    "ground_truth": []
+    "ground_truth": [
+      { "name": "Doritos chips bag", "category": "landfill" },
+      { "name": "Large white plastic bucket container", "category": "recyclable" },
+      { "name": "Clear plastic cup with lid and green straw Starbucks", "category": "recyclable" },
+      { "name": "Yellow plastic straw", "category": "landfill" },
+      { "name": "White plastic bags", "category": "landfill" },
+      { "name": "Crumpled paper towels tissues", "category": "landfill" },
+      { "name": "Small decorative plastic items", "category": "landfill" },
+      { "name": "Clear plastic liner bag", "category": "landfill" }
+    ]
   },
   {
     "id": "IMG_3700",
     "photo": "IMG_3700.jpeg",
-    "ground_truth": []
+    "ground_truth": [
+      { "name": "Cardboard box", "category": "recyclable" },
+      { "name": "Bud Light beer cans", "category": "recyclable" },
+      { "name": "Green plastic bag", "category": "landfill" },
+      { "name": "Black plastic garbage bag", "category": "landfill" },
+      { "name": "Cigarette butts", "category": "landfill" },
+      { "name": "Shredded paper debris", "category": "landfill" }
+    ]
   },
   {
     "id": "IMG_3706",
     "photo": "IMG_3706.jpeg",
-    "ground_truth": []
+    "ground_truth": [
+      { "name": "White paper coffee cup with lid", "category": "recyclable" },
+      { "name": "White paper plate food-stained", "category": "compostable" },
+      { "name": "Aluminum foil food residue", "category": "landfill" },
+      { "name": "Food scraps bread inside foil", "category": "compostable" }
+    ]
   },
   {
     "id": "IMG_3708",
     "photo": "IMG_3708.jpeg",
-    "ground_truth": []
+    "ground_truth": [
+      { "name": "Clear plastic water bottle", "category": "recyclable" },
+      { "name": "Clear plastic cups with lids", "category": "recyclable" },
+      { "name": "Plastic straws", "category": "landfill" },
+      { "name": "Paper coffee cup", "category": "recyclable" },
+      { "name": "Plastic bags", "category": "landfill" },
+      { "name": "Cardboard signage", "category": "recyclable" }
+    ]
   }
 ]
