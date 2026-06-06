@@ -158,22 +158,22 @@ export default function Home() {
         <div className="grid items-center gap-8 sm:grid-cols-2">
           <div>
             <p className="leading-relaxed text-gray-300">
-              A compact, weatherproof camera module designed to retrofit into
-              existing city trash cans. Triggered by motion or lid opening, it
-              captures images and uploads them to the classification server over
-              cellular or WiFi.
+              A compact, IP67-rated camera module designed to clamp onto the
+              inner rim of existing city trash cans. It captures images via a
+              Raspberry Pi Camera Module V2 and transmits data over LTE-M
+              cellular using an Adafruit FONA 4G modem.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-gray-400">
-              <li>Weatherproof enclosure</li>
-              <li>Cellular / WiFi connectivity</li>
-              <li>Battery or solar powered</li>
-              <li>Motion-triggered capture</li>
-              <li>Sub-5-second classification turnaround</li>
+              <li>IP67 waterproof enclosure with polycarbonate lens window</li>
+              <li>LTE-M / NB-IoT cellular connectivity</li>
+              <li>3.7V Li-Ion battery with BMS + buck converter</li>
+              <li>Optional Google Coral TPU for edge inference</li>
+              <li>Tool-less clamp mounting system</li>
             </ul>
           </div>
           <div className="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
             <Image
-              src="/b04a7d2c2ae8890b.png"
+              src="/trashcan_compost_camera_files/trashcan_compost_camera_VISUAL.png"
               alt="Camera module prototype — compact cylindrical enclosure with lens and Raspberry Pi board visible in cutaway view"
               width={800}
               height={500}
@@ -181,6 +181,77 @@ export default function Home() {
             />
           </div>
         </div>
+
+        {/* Key components */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              name: "Raspberry Pi Zero 2 W",
+              role: "Main controller",
+              detail: "Image capture, ML inference, modem control",
+              cost: "$15",
+            },
+            {
+              name: "Pi Camera Module V2",
+              role: "8MP camera sensor",
+              detail: "IMX219 sensor, CSI-2 interface",
+              cost: "$29",
+            },
+            {
+              name: "Adafruit FONA 4G",
+              role: "Cellular modem",
+              detail: "LTE-M/NB-IoT for remote data transmission",
+              cost: "$50",
+            },
+            {
+              name: "Google Coral USB",
+              role: "AI accelerator (optional)",
+              detail: "Edge TPU for on-device inference",
+              cost: "$60",
+            },
+            {
+              name: "18650 Li-Ion Battery",
+              role: "Power source",
+              detail: "3.7V 2-cell with TP4056 BMS",
+              cost: "$17",
+            },
+            {
+              name: "IP67 Enclosure",
+              role: "Weatherproof housing",
+              detail: "EPDM gasket, M3 sealed lid, clamp mount",
+              cost: "$25",
+            },
+          ].map((part) => (
+            <div
+              key={part.name}
+              className="rounded-lg border border-gray-800 bg-gray-900/50 p-4"
+            >
+              <div className="flex items-baseline justify-between">
+                <p className="text-sm font-medium text-white">{part.name}</p>
+                <span className="text-xs text-gray-500">{part.cost}</span>
+              </div>
+              <p className="mt-1 text-xs text-gray-400">{part.role}</p>
+              <p className="mt-0.5 text-xs text-gray-500">{part.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-4 text-sm text-gray-500">
+          Estimated total BOM: ~$220 per unit.{" "}
+          <a
+            href="/trashcan_compost_camera_files/trashcan_compost_camera_GUIDE.md"
+            className="text-gray-400 underline hover:text-gray-300"
+          >
+            Full assembly guide
+          </a>{" "}
+          |{" "}
+          <a
+            href="/trashcan_compost_camera_files/trashcan_compost_camera_PARTS.csv"
+            className="text-gray-400 underline hover:text-gray-300"
+          >
+            Parts list (CSV)
+          </a>
+        </p>
       </section>
 
       {/* Classification Taxonomy */}
