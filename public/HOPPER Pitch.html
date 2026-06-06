@@ -24,13 +24,14 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100%;background:#0c0d0c;}
-  deck-stage:not(:defined){visibility:hidden;}
-
   section{
     background:var(--paper);
     color:var(--ink);
     font-family:var(--font);
     overflow:hidden;
+    position:relative;
+    width:100%;
+    aspect-ratio:1920/1080;
   }
 
   /* ---- shared scaffolding ---- */
@@ -65,15 +66,15 @@
 
   /* entrance */
   @media (prefers-reduced-motion:no-preference){
-    [data-deck-active] .anim{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;}
-    [data-deck-active] .anim:nth-child(2){animation-delay:.06s;}
-    [data-deck-active] .anim:nth-child(3){animation-delay:.12s;}
+    .anim{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;}
+    .anim:nth-child(2){animation-delay:.06s;}
+    .anim:nth-child(3){animation-delay:.12s;}
     @keyframes rise{from{transform:translateY(24px);}to{transform:none;}}
   }
 </style>
 </head>
 <body>
-<deck-stage width="1920" height="1080">
+<div style="max-width:1920px;margin:0 auto;">
 
   <!-- ============ 1 · TITLE ============ -->
   <section data-label="Title">
@@ -479,17 +480,6 @@
     </div>
   </section>
 
-</deck-stage>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#15803d"/>
-    <circle cx="50" cy="34" r="11" fill="none" stroke="#f4f1ea" stroke-width="3.5"/>
-    <circle cx="50" cy="34" r="4" fill="#d8541f"/>
-    <path d="M34 50 L66 50 L60 78 L40 78 Z" fill="none" stroke="#f4f1ea" stroke-width="3.5"/>
-  </svg>
-</template>
-
-<script src="deck-stage.js"></script>
+</div>
 </body>
 </html>
