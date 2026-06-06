@@ -9,6 +9,24 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
+function StatCard({
+  value,
+  label,
+  source,
+}: {
+  value: string;
+  label: string;
+  source: string;
+}) {
+  return (
+    <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-5">
+      <p className="text-3xl font-bold text-white">{value}</p>
+      <p className="mt-1 text-sm text-gray-300">{label}</p>
+      <p className="mt-2 text-xs text-gray-500">{source}</p>
+    </div>
+  );
+}
+
 function PhaseCard({
   phase,
   title,
@@ -37,9 +55,7 @@ function PhaseCard({
   };
 
   return (
-    <div
-      className={`rounded-xl border p-6 ${statusColors[status]}`}
-    >
+    <div className={`rounded-xl border p-6 ${statusColors[status]}`}>
       <div className="mb-3 flex items-center justify-between">
         <span className="text-sm font-medium text-gray-400">{phase}</span>
         <span
@@ -107,17 +123,160 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Problem */}
+      {/* Problem — backed by DSNY data */}
       <section className="mb-16">
         <SectionHeading>The Problem</SectionHeading>
         <p className="max-w-3xl leading-relaxed text-gray-300">
-          A significant portion of public waste in NYC is compostable or
-          recyclable but is currently treated as general landfill trash. There
-          is no systematic way to measure how much recoverable material flows
-          through the city&apos;s public trash cans, and no data-driven
-          mechanism to inform interventions — whether that&apos;s bin
-          placement, sorting infrastructure, or policy changes.
+          NYC operates a source-separation model — residents are required to
+          separate compost before pickup. But material placed in regular trash
+          bins and public litter baskets goes directly to landfill or
+          incineration with no recovery step. There is no real-time data on what
+          is actually being thrown away, and no mechanism to identify which
+          locations have the highest diversion opportunity.
         </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            value="75%"
+            label="of NYC residential waste is divertable from landfill"
+            source="DSNY 2023 Waste Characterization Study"
+          />
+          <StatCard
+            value="20%"
+            label="actual diversion rate — the rest goes to landfill"
+            source="DSNY 2023 Annual Report"
+          />
+          <StatCard
+            value="~4%"
+            label="of compostable organics captured in Queens pilot"
+            source="Academic analysis of Queens curbside trial"
+          />
+          <StatCard
+            value="23,000+"
+            label="public litter baskets with zero compost pathway"
+            source="NYC Open Data — DSNY Litter Basket Locations"
+          />
+        </div>
+
+        <p className="mt-6 text-sm leading-relaxed text-gray-400">
+          DSNY&apos;s 2017 study found that over 40% of citywide refuse was
+          compostable organics. In Queens specifically, almost 47% of refuse was
+          compostable — before adding recyclable paper and packaging. The 2023
+          study confirmed that 75% of residential waste consists of materials
+          that could be diverted through existing programs. The gap between
+          what&apos;s divertable and what&apos;s actually diverted is
+          fundamentally a behavioral and infrastructure problem, not a knowledge
+          problem.
+        </p>
+      </section>
+
+      {/* Research & Context */}
+      <section className="mb-16">
+        <SectionHeading>Research & Context</SectionHeading>
+
+        <div className="space-y-6">
+          {/* Source separation */}
+          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
+            <h3 className="text-base font-semibold text-white">
+              NYC&apos;s Source-Separation Model
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-300">
+              Since October 2024, citywide curbside composting is mandatory for
+              all NYC residents, with fines since April 2025. DSNY collects
+              organics as a distinct stream and processes them at facilities like
+              the Staten Island Compost Facility and Newtown Creek (anaerobic
+              digestion into biogas). But material in regular trash bins — and
+              all 23,000+ public litter baskets — bypasses this entirely and
+              goes straight to out-of-state landfills. NYC does not operate any
+              Mechanical Biological Treatment (MBT) facility to recover organics
+              from mixed refuse after collection.
+            </p>
+          </div>
+
+          {/* Case studies */}
+          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
+            <h3 className="text-base font-semibold text-white">
+              How Other Cities Compare
+            </h3>
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-lg border border-gray-700 p-4">
+                <p className="text-2xl font-bold text-green-400">80%</p>
+                <p className="mt-1 text-sm font-medium text-white">
+                  San Francisco
+                </p>
+                <p className="mt-1 text-xs text-gray-400">
+                  Mandatory three-stream collection since 2009. 14+ years of
+                  enforcement to reach this diversion rate. Restaurants recover
+                  over 90% of discardable materials.
+                </p>
+              </div>
+              <div className="rounded-lg border border-gray-700 p-4">
+                <p className="text-2xl font-bold text-green-400">95%</p>
+                <p className="mt-1 text-sm font-medium text-white">
+                  South Korea
+                </p>
+                <p className="mt-1 text-xs text-gray-400">
+                  Global gold standard. Volume-based waste fee, landfill ban on
+                  food waste since 2005, weight-based food waste fee since 2013.
+                  Food waste processed into biogas, compost, and animal feed.
+                </p>
+              </div>
+              <div className="rounded-lg border border-gray-700 p-4">
+                <p className="text-2xl font-bold text-red-400">20%</p>
+                <p className="mt-1 text-sm font-medium text-white">
+                  New York City
+                </p>
+                <p className="mt-1 text-xs text-gray-400">
+                  Mandatory composting since Oct 2024. Early compliance data
+                  shows only ~4% organics capture. NYC is approximately where
+                  San Francisco was in 2010.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* The litter basket gap */}
+          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
+            <h3 className="text-base font-semibold text-white">
+              The Litter Basket Opportunity
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-300">
+              NYC&apos;s 23,000+ street litter baskets (now being replaced with
+              the &ldquo;Better Bin,&rdquo; named TIME&apos;s Best Invention of
+              2023) are legally designated for pedestrian on-the-go waste only —
+              not household trash, and explicitly not compost. Yet they are
+              routinely misused. The 2023 Waste Characterization Study found
+              significant food content from takeout and convenience purchases.
+              This stream has no current pathway to diversion — it all goes to
+              landfill.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-gray-300">
+              Residents can compost at home. Businesses have mandated commercial
+              composting. But street-use waste has no current pathway to
+              diversion. Camera-based classification at the bin level could
+              convert this 100%-to-landfill stream into a potentially 30-50%
+              divertable stream in high-compostable zones, without any consumer
+              behavior change required.
+            </p>
+          </div>
+
+          {/* Data gap */}
+          <div className="rounded-lg border border-amber-500/20 bg-amber-950/10 p-6">
+            <h3 className="text-base font-semibold text-amber-400">
+              The Data Gap We&apos;re Filling
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-300">
+              DSNY publishes monthly tonnage data by community district and
+              periodic Waste Characterization Studies (sampled from truck loads
+              at transfer stations). But none of the current datasets capture
+              real-time disposal behavior — what specific items are being placed
+              into specific trash cans, by whom, and at what time. This is the
+              gap our system addresses: continuous, per-bin content
+              classification that enables evidence-based zone routing and
+              intervention targeting.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Approach - Three Phases */}
@@ -128,27 +287,76 @@ export default function Home() {
             <p>
               Benchmark Claude, GPT-4o, and Gemini on their ability to classify
               waste items as compostable, recyclable, or landfill using NYC
-              rules. Build a scoring dashboard to compare accuracy.
+              rules. Build a scoring dashboard to compare accuracy across item
+              identification, category classification, and percentage
+              distribution.
             </p>
           </PhaseCard>
           <PhaseCard
             phase="Phase 2"
-            title="Data Collection Pipeline"
+            title="Zone Scoring & Routing Pilot"
             status="next"
           >
             <p>
-              Field teams photograph public trash cans across NYC. Images are
-              classified and aggregated to map waste composition by location,
-              informing where to place compost and recycling bins.
+              Deploy camera modules in 50-100 Better Bins across 3 high-traffic
+              zones (Midtown, Downtown Brooklyn, Jamaica Queens). Build per-bin
+              composability scores. Identify &ldquo;high-compostable
+              zones&rdquo; where aggregate scores consistently exceed 60%. Test
+              dedicated organics collection trucks in those zones.
             </p>
           </PhaseCard>
-          <PhaseCard phase="Phase 3" title="In-Bin Hardware" status="future">
+          <PhaseCard
+            phase="Phase 3"
+            title="Infrastructure & Scale"
+            status="future"
+          >
             <p>
-              Deploy camera modules inside public trash cans for real-time,
-              continuous waste classification — enabling live monitoring and
-              automated intervention recommendations.
+              Embed camera modules into all new Better Bin manufacturing runs.
+              Establish zone-level MBT routing where bins scoring above
+              threshold feed into organics processing at Newtown Creek or a
+              contracted MBT facility. Target: convert a 100%-to-landfill stream
+              into 30-50% divertable in high-compostable zones.
             </p>
           </PhaseCard>
+        </div>
+      </section>
+
+      {/* Why Better Bin, not BigBelly */}
+      <section className="mb-16">
+        <SectionHeading>Target Platform: The Better Bin</SectionHeading>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="rounded-lg border border-green-500/30 bg-green-950/10 p-6">
+            <h3 className="text-base font-semibold text-green-400">
+              DSNY Better Bin
+            </h3>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li>No compactor — contents remain separable</li>
+              <li>DSNY-owned, rolling out citywide (23,000+ units)</li>
+              <li>No electronics currently — design window is now</li>
+              <li>Removable liner enables bin-level routing</li>
+              <li>
+                A worker seeing a high-score indicator can pull the liner into an
+                organics truck
+              </li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-red-500/30 bg-red-950/10 p-6">
+            <h3 className="text-base font-semibold text-red-400">
+              BigBelly HC5 (Not Recommended)
+            </h3>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li>
+                Solar-powered compactor crushes waste into mixed blocks — can&apos;t
+                separate at collection
+              </li>
+              <li>Operated by BIDs, not DSNY directly</li>
+              <li>Only hundreds in BID zones vs. 23,000+ Better Bins</li>
+              <li>
+                Camera data still useful for zone-level intelligence, but
+                bin-level routing is not possible
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -159,12 +367,16 @@ export default function Home() {
           <div>
             <p className="leading-relaxed text-gray-300">
               A proposed design for a compact, IP67-rated camera module that
-              clamps onto the inner rim of existing city trash cans. It would
-              capture images via a Raspberry Pi Camera Module V2 and transmit
-              data over LTE-M cellular using an Adafruit FONA 4G modem.
+              mounts at the disposal opening of Better Bins, capturing each item
+              as it passes through the entry point. Uses IR illumination for
+              consistent imaging regardless of ambient light. The camera
+              classifies items on-device or uploads to a server for
+              classification, building a per-bin composability score in real
+              time.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-gray-400">
               <li>IP67 waterproof enclosure with polycarbonate lens window</li>
+              <li>IR LED ring for low-light capture at disposal opening</li>
               <li>LTE-M / NB-IoT cellular connectivity</li>
               <li>3.7V Li-Ion battery with BMS + buck converter</li>
               <li>Optional Google Coral TPU for edge inference</li>
@@ -254,6 +466,78 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Expected AI accuracy */}
+      <section className="mb-16">
+        <SectionHeading>Expected Classification Accuracy</SectionHeading>
+        <p className="mb-6 text-sm text-gray-400">
+          Based on current CNN/EfficientNet benchmarks and early deployed systems
+          like Rematics&apos; truck-mounted camera (70%+ on plastics in 2024).
+          Real-world public bin conditions are harder than lab conditions due to
+          wrappers, combined items, and lighting variation.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-gray-800">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-800 bg-gray-900 text-left text-xs uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-3">Item Type</th>
+                <th className="px-4 py-3">Expected Accuracy</th>
+                <th className="px-4 py-3">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                {
+                  item: "Obvious food waste (banana peel, apple core)",
+                  accuracy: "85-90%",
+                  note: "Best case — distinctive visual profile",
+                },
+                {
+                  item: "Food in clear wrappers (sandwich, salad clamshell)",
+                  accuracy: "70-80%",
+                  note: "Wrapping partially obscures",
+                },
+                {
+                  item: "Coffee cups (paper body, plastic lid)",
+                  accuracy: "65-75%",
+                  note: "Composite item",
+                },
+                {
+                  item: "Dry recyclables (bottles, cans)",
+                  accuracy: "80-90%",
+                  note: "Distinctive shape and material",
+                },
+                {
+                  item: "Paper and cardboard",
+                  accuracy: "85-90%",
+                  note: "Distinctive visual profile",
+                },
+                {
+                  item: "Opaque plastic bags (unknown contents)",
+                  accuracy: "35-50%",
+                  note: "Cannot classify interior — but high bag rate signals basket misuse",
+                },
+              ].map((row) => (
+                <tr
+                  key={row.item}
+                  className="border-b border-gray-800/50"
+                >
+                  <td className="px-4 py-3 text-gray-300">{row.item}</td>
+                  <td className="px-4 py-3 font-medium text-white">
+                    {row.accuracy}
+                  </td>
+                  <td className="px-4 py-3 text-gray-500">{row.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-gray-500">
+          Individual classification errors average out across hundreds of
+          disposal events per bin per day. Routing decisions are based on
+          aggregate distributions, not single classifications.
+        </p>
+      </section>
+
       {/* Classification Taxonomy */}
       <section className="mb-16">
         <SectionHeading>NYC Classification Rules</SectionHeading>
@@ -313,13 +597,63 @@ export default function Home() {
             </p>
           </div>
           <div className="rounded-lg border border-amber-500/30 bg-amber-950/10 p-5">
-            <p className="text-3xl font-bold text-amber-400">&gt;60%</p>
+            <p className="text-3xl font-bold text-amber-400">&ge;60%</p>
             <p className="mt-1 text-sm text-amber-300">
-              recoverable (combined)
+              bin composability score
             </p>
             <p className="mt-3 text-sm text-gray-400">
-              Recommend industrial sorting investment city-wide
+              Route entire zone to MBT / organics processing instead of landfill
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Privacy & Equity */}
+      <section className="mb-16">
+        <SectionHeading>Privacy & Equity Considerations</SectionHeading>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
+            <h3 className="text-base font-semibold text-white">Privacy</h3>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li>
+                NYC&apos;s POST Act (2020) requires DSNY to publish an impact
+                and use policy before deploying surveillance technology
+              </li>
+              <li>
+                Camera captures items at disposal opening only — no images of
+                people are stored or transmitted
+              </li>
+              <li>
+                On-device edge processing ensures no personally identifiable
+                information leaves the device
+              </li>
+              <li>
+                RFID-based approaches (scanning packaging barcodes) avoid visual
+                capture entirely for residential bins
+              </li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-6">
+            <h3 className="text-base font-semibold text-white">Equity</h3>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li>
+                Recycling and composting participation correlates with income
+                level — monitoring must not deploy only in high-compliance
+                neighborhoods
+              </li>
+              <li>
+                NYCHA developments have historically low diversion despite
+                allocated resources
+              </li>
+              <li>
+                Data from lower-income neighborhoods must be used to add
+                resources and support, not to penalize residents
+              </li>
+              <li>
+                Communities with historically low diversion should be engaged as
+                co-designers of interventions
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -329,12 +663,18 @@ export default function Home() {
         <SectionHeading>Technical Stack</SectionHeading>
         <div className="grid gap-4 sm:grid-cols-2">
           {[
-            { label: "Vision Models", value: "Claude Sonnet, GPT-4o, Gemini Flash" },
+            {
+              label: "Vision Models",
+              value: "Claude Sonnet, GPT-4o, Gemini Flash",
+            },
             { label: "Eval Scripts", value: "TypeScript, ts-node" },
             { label: "Dashboard", value: "Next.js, Tailwind CSS" },
             { label: "Hosting", value: "Vercel" },
             { label: "Data Storage", value: "Postgres (Phase 2)" },
-            { label: "Hardware", value: "Camera module + Raspberry Pi (Phase 3)" },
+            {
+              label: "Hardware",
+              value: "Camera module + Raspberry Pi (Phase 3)",
+            },
           ].map((item) => (
             <div
               key={item.label}
