@@ -19,9 +19,21 @@ type ModelResult = {
   error: string | null;
 };
 
+type GroundTruthItem = {
+  name: string;
+  category: string;
+};
+
+type LabelEntry = {
+  id: string;
+  photo: string;
+  ground_truth: GroundTruthItem[];
+};
+
 const MODELS = ["claude", "gpt4o", "gemini"] as const;
 const RESULTS_DIR = path.join(process.cwd(), "evals/results");
 const PHOTOS_DIR = path.join(process.cwd(), "evals/test-set/photos");
+const LABELS_PATH = path.join(process.cwd(), "evals/test-set/labels.json");
 
 function getPhotos() {
   return fs
@@ -38,6 +50,77 @@ function getModelResult(model: string, photoId: string): ModelResult | null {
   const resultPath = path.join(RESULTS_DIR, model, `${photoId}.json`);
   if (!fs.existsSync(resultPath)) return null;
   return JSON.parse(fs.readFileSync(resultPath, "utf-8"));
+}
+
+function getLabels(): Record<string, GroundTruthItem[]> {
+  if (!fs.existsSync(LABELS_PATH)) return {};
+  const labels: LabelEntry[] = JSON.parse(fs.readFileSync(LABELS_PATH, "utf-8"));
+  const map: Record<string, GroundTruthItem[]> = {};
+  for (const l of labels) {
+    map[l.id] = l.ground_truth;
+  }
+  return map;
+}
+
+function GroundTruthCard({ items }: { items: GroundTruthItem[] }) {
+  if (items.length === 0) {
+    return (
+      <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+        <p className="text-sm text-gray-500 italic">No labels yet</p>
+      </div>
+    );
+  }
+
+  const compostable = items.filter((i) => i.category === "compostable");
+  const recyclable = items.filter((i) => i.category === "recyclable");
+  const landfill = items.filter((i) => i.category === "landfill");
+
+  return (
+    <div className="rounded-lg border border-amber-500/30 bg-amber-950/10 p-4">
+      <div className="mb-3">
+        <span className="text-xs text-gray-500">{items.length} items</span>
+      </div>
+
+      {compostable.length > 0 && (
+        <div className="mb-3">
+          <p className="mb-1 text-xs font-medium text-green-500 uppercase tracking-wide">
+            Compostable ({compostable.length})
+          </p>
+          <ul className="space-y-1">
+            {compostable.map((item, i) => (
+              <li key={i} className="text-sm text-green-400">{item.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {recyclable.length > 0 && (
+        <div className="mb-3">
+          <p className="mb-1 text-xs font-medium text-blue-500 uppercase tracking-wide">
+            Recyclable ({recyclable.length})
+          </p>
+          <ul className="space-y-1">
+            {recyclable.map((item, i) => (
+              <li key={i} className="text-sm text-blue-400">{item.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {landfill.length > 0 && (
+        <div>
+          <p className="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wide">
+            Landfill ({landfill.length})
+          </p>
+          <ul className="space-y-1">
+            {landfill.map((item, i) => (
+              <li key={i} className="text-sm text-gray-400">{item.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function categoryColor(category: string) {
@@ -148,6 +231,7 @@ function ModelResultCard({ result }: { result: ModelResult | null }) {
 
 export default function Results() {
   const photos = getPhotos();
+  const labelsMap = getLabels();
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
@@ -164,6 +248,7 @@ export default function Results() {
             model,
             result: getModelResult(model, photo.id),
           }));
+          const groundTruth = labelsMap[photo.id] ?? [];
 
           return (
             <section
@@ -188,8 +273,14 @@ export default function Results() {
                   />
                 </div>
 
-                {/* Model results on the right */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {/* Human labels + model results on the right */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+                  <div>
+                    <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-400">
+                      Human Labels
+                    </h3>
+                    <GroundTruthCard items={groundTruth} />
+                  </div>
                   {results.map(({ model, result }) => (
                     <div key={model}>
                       <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-400">
