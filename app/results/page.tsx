@@ -1,238 +1,209 @@
 import fs from "fs";
 import path from "path";
+import Image from "next/image";
 
-type CategoryMetrics = {
-  recall: number;
-  precision: number;
+type DetectedItem = {
+  name: string;
+  category: string;
+  reason: string;
 };
 
-type PhotoScore = {
-  photo_id: string;
-  items_identified: number;
-  classification_accuracy: number;
-  compostable: CategoryMetrics;
-  recyclable: CategoryMetrics;
-  landfill: CategoryMetrics;
-  matched: number;
-  ground_truth_count: number;
-  detected_count: number;
-};
-
-type ModelScore = {
+type ModelResult = {
   model: string;
-  items_identified: number;
-  classification_accuracy: number;
-  compostable: CategoryMetrics;
-  recyclable: CategoryMetrics;
-  landfill: CategoryMetrics;
-  avg_latency_ms: number;
-  failure_rate: number;
-  per_photo: PhotoScore[];
+  photo_id: string;
+  photo_file: string;
+  latency_ms: number;
+  success: boolean;
+  items: DetectedItem[] | null;
+  raw_response: string | null;
+  error: string | null;
 };
 
-function pct(n: number) {
-  return `${(n * 100).toFixed(1)}%`;
+const MODELS = ["claude", "gpt4o", "gemini"] as const;
+const RESULTS_DIR = path.join(process.cwd(), "evals/results");
+const PHOTOS_DIR = path.join(process.cwd(), "evals/test-set/photos");
+
+function getPhotos() {
+  return fs
+    .readdirSync(PHOTOS_DIR)
+    .filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f))
+    .sort()
+    .map((file) => ({
+      id: path.basename(file, path.extname(file)),
+      file,
+    }));
 }
 
-function loadScores(): ModelScore[] | null {
-  const scoresPath = path.join(process.cwd(), "evals/results/scores.json");
-  if (!fs.existsSync(scoresPath)) return null;
-  return JSON.parse(fs.readFileSync(scoresPath, "utf-8"));
+function getModelResult(model: string, photoId: string): ModelResult | null {
+  const resultPath = path.join(RESULTS_DIR, model, `${photoId}.json`);
+  if (!fs.existsSync(resultPath)) return null;
+  return JSON.parse(fs.readFileSync(resultPath, "utf-8"));
 }
 
-function MetricCard({ label, value }: { label: string; value: string }) {
+function categoryColor(category: string) {
+  switch (category) {
+    case "compostable":
+      return "text-green-400";
+    case "recyclable":
+      return "text-blue-400";
+    case "landfill":
+      return "text-gray-400";
+    default:
+      return "text-gray-500";
+  }
+}
+
+function categoryBadge(category: string) {
+  switch (category) {
+    case "compostable":
+      return "bg-green-500/15 text-green-400 border-green-500/30";
+    case "recyclable":
+      return "bg-blue-500/15 text-blue-400 border-blue-500/30";
+    case "landfill":
+      return "bg-gray-500/15 text-gray-400 border-gray-500/30";
+    default:
+      return "bg-gray-500/15 text-gray-500 border-gray-500/30";
+  }
+}
+
+function ModelResultCard({ result }: { result: ModelResult | null }) {
+  if (!result) {
+    return (
+      <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+        <p className="text-sm text-gray-500 italic">No results</p>
+      </div>
+    );
+  }
+
+  if (!result.success || !result.items) {
+    return (
+      <div className="rounded-lg border border-red-900/50 bg-red-950/20 p-4">
+        <p className="text-sm text-red-400">Failed</p>
+        <p className="mt-1 text-xs text-red-500/70 truncate">
+          {result.error}
+        </p>
+      </div>
+    );
+  }
+
+  const compostable = result.items.filter((i) => i.category === "compostable");
+  const recyclable = result.items.filter((i) => i.category === "recyclable");
+  const landfill = result.items.filter((i) => i.category === "landfill");
+
   return (
-    <div className="rounded-lg bg-gray-900 border border-gray-800 p-4">
-      <p className="text-xs uppercase tracking-wide text-gray-400">{label}</p>
-      <p className="mt-1 text-2xl font-semibold text-white">{value}</p>
+    <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+      <div className="mb-3 flex items-center justify-between">
+        <span className="text-xs text-gray-500">
+          {result.items.length} items | {result.latency_ms}ms
+        </span>
+      </div>
+
+      {compostable.length > 0 && (
+        <div className="mb-3">
+          <p className="mb-1 text-xs font-medium text-green-500 uppercase tracking-wide">
+            Compostable ({compostable.length})
+          </p>
+          <ul className="space-y-1">
+            {compostable.map((item, i) => (
+              <li key={i} className="text-sm text-green-400">
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {recyclable.length > 0 && (
+        <div className="mb-3">
+          <p className="mb-1 text-xs font-medium text-blue-500 uppercase tracking-wide">
+            Recyclable ({recyclable.length})
+          </p>
+          <ul className="space-y-1">
+            {recyclable.map((item, i) => (
+              <li key={i} className="text-sm text-blue-400">
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {landfill.length > 0 && (
+        <div>
+          <p className="mb-1 text-xs font-medium text-gray-500 uppercase tracking-wide">
+            Landfill ({landfill.length})
+          </p>
+          <ul className="space-y-1">
+            {landfill.map((item, i) => (
+              <li key={i} className="text-sm text-gray-400">
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
 
-function colorForScore(score: number) {
-  if (score >= 0.8) return "text-green-400";
-  if (score >= 0.6) return "text-yellow-400";
-  return "text-red-400";
-}
-
-export default function Home() {
-  const scores = loadScores();
-
-  if (!scores) {
-    return (
-      <main className="mx-auto max-w-4xl px-6 py-16">
-        <h1 className="text-3xl font-bold">Compost & Recycling Waste Identifier</h1>
-        <p className="mt-2 text-gray-400">Model evaluation dashboard</p>
-        <div className="mt-12 rounded-lg border border-gray-800 bg-gray-900 p-8 text-center">
-          <p className="text-lg text-gray-300">No results yet</p>
-          <p className="mt-2 text-sm text-gray-500">
-            Run the eval and scoring scripts first:
-          </p>
-          <pre className="mt-4 inline-block rounded bg-gray-800 px-4 py-2 text-left text-sm text-gray-300">
-            {`npm run eval\nnpm run score`}
-          </pre>
-        </div>
-      </main>
-    );
-  }
-
-  const best = scores.reduce((a, b) =>
-    a.classification_accuracy > b.classification_accuracy ? a : b
-  );
+export default function Results() {
+  const photos = getPhotos();
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
       <div className="mb-12">
-        <h1 className="text-3xl font-bold">Compost & Recycling Waste Identifier</h1>
+        <h1 className="text-3xl font-bold">Eval Results</h1>
         <p className="mt-2 text-gray-400">
-          Comparing {scores.length} vision models on compostable / recyclable /
-          landfill waste classification
+          {photos.length} photos classified by {MODELS.length} models
         </p>
       </div>
 
-      {/* Summary cards */}
-      <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <MetricCard label="Models tested" value={String(scores.length)} />
-        <MetricCard label="Best model" value={best.model} />
-        <MetricCard
-          label="Best classification"
-          value={pct(best.classification_accuracy)}
-        />
-        <MetricCard
-          label="Photos evaluated"
-          value={String(best.per_photo.length)}
-        />
+      <div className="space-y-12">
+        {photos.map((photo) => {
+          const results = MODELS.map((model) => ({
+            model,
+            result: getModelResult(model, photo.id),
+          }));
+
+          return (
+            <section
+              key={photo.id}
+              className="rounded-xl border border-gray-800 bg-gray-950 overflow-hidden"
+            >
+              <div className="border-b border-gray-800 bg-gray-900/50 px-6 py-3">
+                <h2 className="text-sm font-medium text-gray-300">
+                  {photo.id}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[350px_1fr]">
+                {/* Photo on the left */}
+                <div className="overflow-hidden rounded-lg border border-gray-800">
+                  <Image
+                    src={`/photos/${photo.file}`}
+                    alt={`Waste photo ${photo.id}`}
+                    width={700}
+                    height={700}
+                    className="w-full object-cover"
+                  />
+                </div>
+
+                {/* Model results on the right */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {results.map(({ model, result }) => (
+                    <div key={model}>
+                      <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-400">
+                        {model}
+                      </h3>
+                      <ModelResultCard result={result} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })}
       </div>
-
-      {/* Main comparison table */}
-      <section className="mb-12">
-        <h2 className="mb-4 text-xl font-semibold">Model Comparison</h2>
-        <div className="overflow-x-auto rounded-lg border border-gray-800">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-800 bg-gray-900 text-left text-xs uppercase tracking-wide text-gray-400">
-                <th className="px-4 py-3">Model</th>
-                <th className="px-4 py-3">Items Found</th>
-                <th className="px-4 py-3">Class. Acc</th>
-                <th className="px-4 py-3 text-green-500">Comp R</th>
-                <th className="px-4 py-3 text-green-500">Comp P</th>
-                <th className="px-4 py-3 text-blue-500">Recy R</th>
-                <th className="px-4 py-3 text-blue-500">Recy P</th>
-                <th className="px-4 py-3 text-gray-500">Land R</th>
-                <th className="px-4 py-3 text-gray-500">Land P</th>
-                <th className="px-4 py-3">Avg Latency</th>
-                <th className="px-4 py-3">Fail Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scores.map((s) => (
-                <tr
-                  key={s.model}
-                  className="border-b border-gray-800/50 hover:bg-gray-900/50"
-                >
-                  <td className="px-4 py-3 font-medium">{s.model}</td>
-                  <td className={`px-4 py-3 ${colorForScore(s.items_identified)}`}>
-                    {pct(s.items_identified)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.classification_accuracy)}`}>
-                    {pct(s.classification_accuracy)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.compostable.recall)}`}>
-                    {pct(s.compostable.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.compostable.precision)}`}>
-                    {pct(s.compostable.precision)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.recyclable.recall)}`}>
-                    {pct(s.recyclable.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.recyclable.precision)}`}>
-                    {pct(s.recyclable.precision)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.landfill.recall)}`}>
-                    {pct(s.landfill.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.landfill.precision)}`}>
-                    {pct(s.landfill.precision)}
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {Math.round(s.avg_latency_ms)}ms
-                  </td>
-                  <td className={`px-4 py-3 ${s.failure_rate > 0 ? "text-red-400" : "text-green-400"}`}>
-                    {pct(s.failure_rate)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Per-photo breakdowns */}
-      {scores.map((modelScore) => (
-        <section key={modelScore.model} className="mb-12">
-          <h2 className="mb-4 text-xl font-semibold">
-            {modelScore.model} — Per-Photo Results
-          </h2>
-          <div className="overflow-x-auto rounded-lg border border-gray-800">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-800 bg-gray-900 text-left text-xs uppercase tracking-wide text-gray-400">
-                  <th className="px-4 py-3">Photo</th>
-                  <th className="px-4 py-3">Matched</th>
-                  <th className="px-4 py-3">Detected</th>
-                  <th className="px-4 py-3">Truth</th>
-                  <th className="px-4 py-3">Items Found</th>
-                  <th className="px-4 py-3">Class. Acc</th>
-                  <th className="px-4 py-3 text-green-500">Comp R</th>
-                  <th className="px-4 py-3 text-green-500">Comp P</th>
-                  <th className="px-4 py-3 text-blue-500">Recy R</th>
-                  <th className="px-4 py-3 text-blue-500">Recy P</th>
-                  <th className="px-4 py-3 text-gray-500">Land R</th>
-                  <th className="px-4 py-3 text-gray-500">Land P</th>
-                </tr>
-              </thead>
-              <tbody>
-                {modelScore.per_photo.map((p) => (
-                  <tr
-                    key={p.photo_id}
-                    className="border-b border-gray-800/50 hover:bg-gray-900/50"
-                  >
-                    <td className="px-4 py-3 font-mono text-xs">{p.photo_id}</td>
-                    <td className="px-4 py-3">{p.matched}</td>
-                    <td className="px-4 py-3">{p.detected_count}</td>
-                    <td className="px-4 py-3">{p.ground_truth_count}</td>
-                    <td className={`px-4 py-3 ${colorForScore(p.items_identified)}`}>
-                      {pct(p.items_identified)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.classification_accuracy)}`}>
-                      {pct(p.classification_accuracy)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.compostable.recall)}`}>
-                      {pct(p.compostable.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.compostable.precision)}`}>
-                      {pct(p.compostable.precision)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.recyclable.recall)}`}>
-                      {pct(p.recyclable.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.recyclable.precision)}`}>
-                      {pct(p.recyclable.precision)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.landfill.recall)}`}>
-                      {pct(p.landfill.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.landfill.precision)}`}>
-                      {pct(p.landfill.precision)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ))}
     </main>
   );
 }
