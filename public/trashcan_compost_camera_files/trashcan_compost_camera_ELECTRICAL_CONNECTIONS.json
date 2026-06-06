@@ -1,0 +1,95 @@
+[
+  {
+    "type": "power",
+    "label": "Battery to BMS Input",
+    "source": "battery_pack",
+    "target": "battery_management",
+    "current": "5A",
+    "voltage": "3.7V"
+  },
+  {
+    "type": "power",
+    "label": "BMS Output to Buck Converter",
+    "source": "battery_management",
+    "target": "buck_converter",
+    "current": "3A",
+    "voltage": "3.7V"
+  },
+  {
+    "type": "power",
+    "label": "5V to Main MCU",
+    "source": "buck_converter",
+    "target": "main_mcu",
+    "current": "2A",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "5V to Cellular Modem",
+    "source": "buck_converter",
+    "target": "cellular_modem",
+    "current": "500mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "power",
+    "label": "3.3V to Camera Module",
+    "source": "main_mcu",
+    "target": "camera_module",
+    "current": "200mA",
+    "voltage": "3.3V"
+  },
+  {
+    "type": "power",
+    "label": "USB Power to AI Accelerator",
+    "source": "main_mcu",
+    "target": "ai_accelerator",
+    "current": "900mA",
+    "voltage": "5V"
+  },
+  {
+    "type": "data",
+    "label": "CSI Data",
+    "source": "main_mcu",
+    "target": "camera_module",
+    "protocol": "dsi",
+    "sourcePin": "CSI",
+    "targetPin": "CSI-2"
+  },
+  {
+    "type": "data",
+    "label": "MCU UART TX to Modem RX",
+    "source": "main_mcu",
+    "target": "cellular_modem",
+    "protocol": "uart",
+    "sourcePin": "UART_TX",
+    "targetPin": "RXD"
+  },
+  {
+    "type": "data",
+    "label": "MCU UART RX to Modem TX",
+    "source": "main_mcu",
+    "target": "cellular_modem",
+    "protocol": "uart",
+    "sourcePin": "UART_RX",
+    "targetPin": "TXD"
+  },
+  {
+    "type": "data",
+    "label": "Modem Power Control",
+    "source": "main_mcu",
+    "target": "cellular_modem",
+    "protocol": "gpio",
+    "sourcePin": "GPIO_3",
+    "targetPin": "PWRKEY"
+  },
+  {
+    "type": "data",
+    "label": "USB 3.0 Data to AI Accelerator",
+    "source": "main_mcu",
+    "target": "ai_accelerator",
+    "protocol": "usb",
+    "sourcePin": "USB",
+    "targetPin": "USB 3.0 Type-C"
+  }
+]

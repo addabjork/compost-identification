@@ -6,11 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "eval": "npx ts-node scripts/run-image-evals.ts",
-    "eval:claude": "npx ts-node scripts/run-image-evals.ts --model claude",
-    "eval:gpt4o": "npx ts-node scripts/run-image-evals.ts --model gpt4o",
-    "eval:gemini": "npx ts-node scripts/run-image-evals.ts --model gemini",
-    "score": "npx ts-node scripts/score-results.ts"
+    "eval": "npx ts-node --project scripts/tsconfig.json scripts/run-image-evals.ts",
+    "eval:claude": "npx ts-node --project scripts/tsconfig.json scripts/run-image-evals.ts --model claude",
+    "eval:gpt4o": "npx ts-node --project scripts/tsconfig.json scripts/run-image-evals.ts --model gpt4o",
+    "eval:gemini": "npx ts-node --project scripts/tsconfig.json scripts/run-image-evals.ts --model gemini",
+    "score": "npx ts-node --project scripts/tsconfig.json scripts/score-results.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

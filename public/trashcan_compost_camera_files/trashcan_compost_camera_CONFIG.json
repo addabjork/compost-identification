@@ -1,0 +1,1374 @@
+{
+  "plan": "- Microcontroller: Raspberry Pi Zero 2 W or ESP32-CAM with integrated Wi-Fi for image capture and transmission. Select a compatible camera module (e.g., Raspberry Pi Camera Module V2).\n- AI Processing: Implement on-device inference for compostable identification using a pre-trained TinyML model or an optional AI accelerator like a Google Coral USB Accelerator if using a Raspberry Pi.\n- Power System: Rechargeable LiPo battery pack (e.g., 18650 cells with protection circuit) providing sufficient run-time, potentially integrated with a small solar panel for extended life if lighting permits.\n- Enclosure & Mounting: IP67-rated waterproof and tamper-resistant enclosure to protect electronics from elements and trashcan environment. Design custom mounting brackets or clamps for secure attachment inside the trash can.\n- Mechanical Components: Stainless steel fasteners, rubber gaskets for waterproofing, and an impact-resistant clear polycarbonate window for the camera lens.\n- Custom 3D-Printed Parts: Internal component mounts, camera lens shroud, custom enclosure seals, and potentially specialized mounting adapters for trash can geometry.",
+  "nodes": [
+    {
+      "id": "main_mcu",
+      "name": "Main Controller",
+      "pins": [
+        "GPIO",
+        "CSI",
+        "USB",
+        "HDMI",
+        "SDIO"
+      ],
+      "type": "mcu",
+      "partId": "ae040ab5-ce8b-446f-932b-ecd4c5602034",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+Zero+2+W&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/5291-00.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "GPIO,CSI,DSI,USB_OTG,5V,3V3,GND"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005009930323351.html?pdp_npi=6%40dis%21USD%2112.54%216.15%21%21%2184.76%2141.53%21%402140d36117793328410134603e11a8%2112000050607736268%21affd%21%21%21%211%210%21",
+            "price": "$6.15",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CT1Y3CQJ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$49.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.adafruit.com/product/5291",
+            "price": "$19.05",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CT1NWTHY?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$74.99",
+            "vendor": "Amazon"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/5291",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CT1Y3CQJ?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "65x30x5mm",
+      "description": "Main microcontroller for image processing (ML) and motor control.",
+      "productName": "Raspberry Pi Zero 2 W",
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=Raspberry+Pi+Zero+2+W",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxxqcAhQNQPsuiTqrdARjTdlQtuj9NawMly9iN0VjH8F5lsBv10rWL0foQP9FNFUqilhQGv5RWqGQTLAnhwWgnKGDjMG8MhFaZq3bNPKJq8V9l2jw4D8iTQfeTja1b1z7whJ06gtkEq8puGSfCkBlJjnk9rjjYQLeHMPqykwpbZggTStFjYhKbiKx0trSjZiVJBV39BLnbSYM7QyapccGrx9Z6HSX31fdbERT111RtdTv5Z7yz1RVYWMi4iNcuT3UOUhQbDfKLLbBRhYreH6F1rogUFA5qadXeqS0c8NZ5pPF2FZscNFvG2kq8DE3KwQPlmuTYj3Nj5yVNXDR2usoPI5yNJpqcvYPRpRGWGN5ZtuTWikV1wmjb4irpfuJ8cf44RgkpU5ahst0z8DjBr3zEXZ8EQUU81UjrcEMwJ1HwR69sRwKkqEFhAHvARM050cQzTqWjOjGRRjS7uxf6EtPyro1X11yjE4KrDZSWfKPFwIwua34oJ9LpUYUhffjcIqVT2qjKiW49fhnhR7E1px5EwNFvjM4OTpWdX7wgrOkOyBAINWeQAIn2tmMnBitFSGiB8uA2m3MkxlcNqkkkI43t7uv9XYaaPQECmk7QnOKqf1ln34aTCm9onxIMaePwMp6QS7anNdcMJIXoxWgBD3HjLyB",
+      "estimatedCost": 15
+    },
+    {
+      "id": "camera_module",
+      "name": "Camera Sensor",
+      "pins": [
+        "CSI-2"
+      ],
+      "type": "sensor",
+      "partId": "91c980a3-ee61-48d2-9d50-28efa0d584ee",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Raspberry+Pi+Camera+Module+V2&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41FNaqAhc3L._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "Type",
+            "value": "Sensor"
+          },
+          {
+            "label": "pins",
+            "value": "CSI Connector"
+          },
+          {
+            "label": "Contents",
+            "value": "Board(s), Cable(s)"
+          },
+          {
+            "label": "Function",
+            "value": "Camera"
+          },
+          {
+            "label": "Platform",
+            "value": "Raspberry Pi"
+          },
+          {
+            "label": "Utilized IC / Part",
+            "value": "IMX219"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://octopart.com/opatz8j6/a1?t=NL5xwl2Atq5F5BDd9zXzKLIPGGihSa1iFP5i9kzgADLTg1DN8v56plD28Rp6_lTpzak_3Bv18oLsstIXGyDWqt37AY4Z5j5XfTrXbbgEejoLja68e6z-TEkpri12PN-Eafm1r1OVuDqmuW337m2FZCmbFNrzgfQCfIpdbITuPYYg-T_woWQF6A4XVl_i6kFzPyCWXSl6pFiVXnBtP9K_NK-etw4qXDAxwmyHSkCaStypSsJay0HNSd33ok6pgEGbjE9cWFMpEAOGjlYJbPx4Hi4cozAdIeo",
+            "price": "$28.6249",
+            "vendor": "UnikeyIC"
+          },
+          {
+            "url": "https://www.digikey.com/en/products/detail/raspberry-pi/SC0023/6152810",
+            "price": "$15",
+            "vendor": "DigiKey"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B01ER2SKFS?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$28.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.adafruit.com/product/5657",
+            "price": "$29.25",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/33015616449.html?pdp_npi=6%40dis%21USD%2115.25%2115.25%21%21%21103.12%21103.12%21%4021013cc617794088263365915e0f99%2112000036161490918%21affd%21%21%21%211%210%21",
+            "price": "$15.25",
+            "vendor": "AliExpress"
+          }
+        ],
+        "datasheetUrl": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1881/913-2664_WEB.pdf"
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01ER2SKFS?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "25x23x9mm",
+      "description": "RPI CAM V2 IMX219 8MP",
+      "productName": "Raspberry Pi Camera Module V2",
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=Raspberry+Pi+Camera+Module+V2",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x4g6z6QO53rvyHStoiwAE6ccRwIY5saeABhFAtKBHTBddqBcGsYyb0EyFwYmLGMXPsl5TDdSobjd9KLx6PIqFZW2MsEmMGas6pJR8NWKiJVUIlR31zkjOKiCXqvMWoA1AVovsDaOIUmCQzKAIUABY69qbJRJGw9ZtaLz9TzUOA2Mtpum07wH4iloryl5xjFcCDOIDBloHG0AGDO44Z8gVoJAECRe8yI1x2dGN0Q32D3zCT1a86B2g7PoolsnB3F80b2VHFLrpzFCflglUzq7ns1eCwgx5LVGHvQiTIBhDQSuqaTg1Cq8QAjcotcVv3rQZzZN8YF6NY08DmIcsMmNDLrUusn3Cvk4Q7rHFwxtNOQTNwKiAvwPHnIEv9pLRgzkZVp9uZXOT9y4FNlOc9hYVCmSHGFCm8c9vaaqkpTGZD7P6wbvnVlozvXb6ykmQhcZCzVs2eE3JRiPFR83mEco5uXdFKenVpi7ykO2yn5y0TGlvBqGasyr1C3JEycc8peo3ePHFs6bNAegXTOf8FNLPgWfkFvpITjQuuU52dVxSnseltoLdWDDzi87IyhfxoWnThDHophYzZoioSkUwM2Nv7NlTlUFiX7y5XTePTnLSjP6LEcCqNVKPHoXE0XNoTqOHXpVLAq1EJ47WVOgj6KCz4huQkmlHuiPNxHyTPqAtHU8iGu1gqVWL",
+      "estimatedCost": 29
+    },
+    {
+      "id": "cellular_modem",
+      "name": "Cellular Data Modem",
+      "pins": [
+        "UART",
+        "GPIO",
+        "Power"
+      ],
+      "type": "module",
+      "partId": "22297d5f-9919-4837-8e1c-34ff1c46c043",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Adafruit+FONA+4G+Cellular+Module+%28LTE-M%2FNB-IoT%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51Ra4gHaj1L._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-adafruit-fona-4g-cellular-module-lte-m-nb-iot.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B011YGWAGK?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$44.04",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "42x27x7mm",
+      "description": "Low-power cellular module for remote location data transmission, providing real-time live tracking capabilities.",
+      "productName": "Adafruit FONA 4G Cellular Module (LTE-M/NB-IoT)",
+      "purchaseUrl": "https://www.adafruit.com/product/4904",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c3m6FSZB",
+      "estimatedCost": 49.95,
+      "amazonUrl": "https://www.amazon.com/dp/B011YGWAGK?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "battery_pack",
+      "name": "Li-Ion Battery Pack",
+      "pins": [
+        "Positive",
+        "Negative"
+      ],
+      "type": "power",
+      "partId": "6f0e6df5-9cea-4400-accf-24221d4aec1a",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=3.7V+18650+Li-Ion+Battery+%282-cell+holder%29&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://cdn-shop.adafruit.com/640x480/3951-06.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B09C1XFD3B?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005012293054121.html?pdp_npi=6%40dis%21USD%2115.69%217.06%21%21%21106.14%2147.76%21%402151fce817794817901425738e10c4%2112000057974959118%21affd%21%21%21%211%210%21",
+            "price": "$7.06",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.adafruit.com/product/3951",
+            "price": "$0.95",
+            "vendor": "Adafruit"
+          }
+        ],
+        "documentationUrls": [
+          {
+            "url": "https://www.adafruit.com/product/3951",
+            "title": "Product Page (Adafruit)"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B09C1XFD3B?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "75x40x20mm",
+      "productName": "3.7V 18650 Li-Ion Battery (2-cell holder)",
+      "purchaseUrl": "https://www.adafruit.com/product/3951",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JyanRcYQyAyl73wi5o7FxJiFCgKJzeduixawg3Q2KTlm1QDotrpjAxUY5iSi2DR30Tyj2B9PwzZHqgiA1bfmHbo9TBJmQeUeI09RQo0SNe7DlBW6skDSkZp2Mr7Ig1DjBswSG3rD6zkl9x6SZH0MGl8b9hJ2xuzo08isAWSq89cD26yETUtWxcrIICcnmM6AbRpVCKSRSkxjbe6xNZvOvLbW31RswL1Dyst5hJgbQN0Ro0ItaYdiSHI60feKDQ8kYymhQ1lbuXf5JfvSWV4QDJGea4KEqVhmD5VhG7489qeAFQcreR9M7WMpIJsBCRDyQolR7csImc4eidE8UzOMHOeTZme8DvYduAuG5SLWpJLmnSVosVteVUCWuz59ynsaCDihz6SgaIhBCNo3Sj8zfQDL2IUYFE8lKUO6jgaRzwMOFTo6gTnHEkJsOrW6PEqHTk0z5c66fcURrShHYxeXQwMQx2joPQBqTVwmgayAhJX0jWkZ7KCs99ZGMoxJSS88OsJ5O3EctYJerYhAA0iYACkdYSbj9expIZ4AouxZFIe5qz1tt9OhHOUbBX1lfVG1ZnvA8PUJyakmZ4IAb8jZI9c36mSwLZVE9mqgd90jUPwl6hiaNSzM3TmNc9pnXC4WVsnhKhwsCH3egpx5KohXINXGB",
+      "estimatedCost": 15
+    },
+    {
+      "id": "battery_management",
+      "name": "Battery Management System",
+      "pins": [
+        "IN+",
+        "IN-",
+        "OUT+",
+        "OUT-",
+        "B+",
+        "B-"
+      ],
+      "type": "power",
+      "partId": "96f70f01-a132-4e99-bcc4-1311e0d0570d",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=TP4056+Li-Ion+Charger+Module+with+Protection&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51vzl0NMviL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B08FSRV7GS?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006043031985.html?pdp_npi=6%40dis%21USD%216.21%212.95%21%21%2142.00%2119.97%21%402151fca717795116983674881e0def%2112000035475416223%21affd%21%21%21%211%210%21",
+            "price": "$2.95",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B08FSRV7GS?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "28x17x5mm",
+      "productName": "TP4056 Li-Ion Charger Module with Protection",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxfJ5fNcuPn70f8Nuiu9RNCG5qmk5Izv7ASEfrThVI1diOE0CrFJJ57Ex6MfbtS2DwDSVzT2jGNU4fWQamcWgmU4NdrHz3m9kgDy5SBr8WblpGLqvcGtkfB9oWvG0q81LsuNVftNdLonrD24umPvWtEHBCLjE9PHSm8l6CO19gX9EDnKlofuhXAIbh4GwYIfyQjFVE9Lly4Md04gGgf24k0iPOXtKPdGjeODdZwsd40W0ufNJb3NimxxHDzk2tRx92pHWsWJj0gvkVrjwJeuNDHgU0WqUmuzLoab9DEAJ8sTdLd4oEHYD4UWv6liWmRCdrSPXNlVM9wvWYhTu3I8x3nZZ14afbolW09iYmlBEsCvNd1YzgKnfQQvAvRB3LUypNXShNrCAzGzmuNohq5ja0ulqNLThma8BE7wGudeMZA6jKMuS3gLVODB8iSawqpNHSl6jwcPyjqfheHDJt1mtjuyBSVco3V2nBa8SEk0Z8fxn1ZCGSo987mwIV5dgkxLCiPKUwdy0X74roGZv3RtSoIQPK2BNRbNdOXqxXwWlw0tipPBdLnjiX2dh21hAOwQ7daBkVDE4DEty4b6rtwNrahwerClHV8M7V3g1OEz3JAJu5xiLPHPYmwAsgHgCd4UjAYUshR7ZXTvz9zHJdLUt3fEj",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxfJ5fNcuPn70f8Nuiu9RNCG5qmk5Izv7ASEfrThVI1diOE0CrFJJ57Ex6MfbtS2DwDSVzT2jGNU4fWQamcWgmU4NdrHz3m9kgDy5SBr8WblpGLqvcGtkfB9oWvG0q81LsuNVftNdLonrD24umPvWtEHBCLjE9PHSm8l6CO19gX9EDnKlofuhXAIbh4GwYIfyQjFVE9Lly4Md04gGgf24k0iPOXtKPdGjeODdZwsd40W0ufNJb3NimxxHDzk2tRx92pHWsWJj0gvkVrjwJeuNDHgU0WqUmuzLoab9DEAJ8sTdLd4oEHYD4UWv6liWmRCdrSPXNlVM9wvWYhTu3I8x3nZZ14afbolW09iYmlBEsCvNd1YzgKnfQQvAvRB3LUypNXShNrCAzGzmuNohq5ja0ulqNLThma8BE7wGudeMZA6jKMuS3gLVODB8iSawqpNHSl6jwcPyjqfheHDJt1mtjuyBSVco3V2nBa8SEk0Z8fxn1ZCGSo987mwIV5dgkxLCiPKUwdy0X74roGZv3RtSoIQPK2BNRbNdOXqxXwWlw0tipPBdLnjiX2dh21hAOwQ7daBkVDE4DEty4b6rtwNrahwerClHV8M7V3g1OEz3JAJu5xiLPHPYmwAsgHgCd4UjAYUshR7ZXTvz9zHJdLUt3fEj",
+      "estimatedCost": 2
+    },
+    {
+      "id": "buck_converter",
+      "name": "Voltage Regulator for Pi",
+      "pins": [
+        "VIN+",
+        "VIN-",
+        "VOUT+",
+        "VOUT-"
+      ],
+      "type": "power",
+      "partId": "62dfce21-01e4-4535-9148-2c33654dc67b",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=MP1584EN+DC-DC+Buck+Converter&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/61TobZLQwlL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VIN+,VIN-,VOUT+,VOUT-"
+          }
+        ],
+        "examples": [
+          {
+            "url": "https://randomnerdtutorials.com/mp1584en-dc-dc-buck-converter-module-tutorial/",
+            "title": "Basic MP1584EN DC-DC Buck Converter Module Tutorial",
+            "description": "This tutorial provides a fundamental guide on how to use the MP1584EN buck converter module, covering its input/output connections, voltage adjustment using the onboard potentiometer, and basic testing procedures. It's a great starting point for understanding its operation before integration into more complex projects."
+          },
+          {
+            "url": "https://www.electronicshub.org/esp32-power-supply-schematic-and-design-guide/",
+            "title": "Powering ESP32 and Sensors with MP1584EN",
+            "description": "While not exclusively about MP1584EN, this guide details power supply considerations for ESP32 and related sensors, often recommending buck converters like the MP1584EN to step down higher voltages (e.g., 12V) to the required 5V or 3.3V for microcontrollers and peripherals. It demonstrates practical application in a common MCU project scenario."
+          },
+          {
+            "url": "https://www.instructables.com/Simple-Adjustable-Bench-Power-Supply-From-a-Wall-W/",
+            "title": "Making a Simple Bench Power Supply with MP1584EN",
+            "description": "This Instructable demonstrates building a compact, adjustable bench power supply using the MP1584EN module. It showcases the converter's ability to take a higher input voltage (e.g., from a laptop charger) and provide a regulated, adjustable output for prototyping and testing various electronic circuits, illustrating its versatility."
+          },
+          {
+            "url": "https://raspberrypi.stackexchange.com/questions/59664/powering-raspberry-pi-from-12v-source-with-mp1584en",
+            "title": "MP1584EN Buck Converter for Raspberry Pi Power Supply",
+            "description": "This forum discussion and related resources illustrate how the MP1584EN is used to convert a 12V input, typically from a car battery or a 12V power adapter, down to the stable 5V required by a Raspberry Pi. It highlights practical considerations for ensuring sufficient current delivery and stable voltage for SBCs."
+          },
+          {
+            "url": "https://www.hackster.io/hackers-hub/diy-car-charger-using-mp1584-712854",
+            "title": "Automotive 12V to 5V USB Charger using MP1584EN",
+            "description": "This project details how to construct a simple 12V to 5V USB charger for automotive use employing the MP1584EN. It demonstrates a common application where the converter efficiently steps down the vehicle's 12V supply to charge USB-powered devices, providing a robust solution for mobile power needs."
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B01MQGMOKI?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$11.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006365858647.html?pdp_npi=6%40dis%21USD%2110.03%214.81%21%21%2168.02%2132.65%21%402140d36217793269140206979e10a1%2112000036911988787%21affd%21%21%21%211%210%21",
+            "price": "$4.81",
+            "vendor": "AliExpress"
+          }
+        ],
+        "datasheetUrl": "https://cdn.ozdisan.com/ETicaret_Dosya/626534_924471.pdf",
+        "documentationUrls": [
+          {
+            "url": "https://www.openhardware.io/view/770/MP1584EN-DC-DC-Buck-Converter-Power-Module",
+            "type": "reference",
+            "title": "OpenHardware.io"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B01MQGMOKI?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "22x17x4mm",
+      "description": "Regulates power from the main 12V supply to 5V for ESP32-S3 modules and various sensors.",
+      "productName": "MP1584EN DC-DC Buck Converter",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHNSBmwrWAucJktiEiF7T0GrENZ2N7RQ8V7BzbnqVxsrMEtflOJAoWeKe8mUiCgYFPVMDIxu8NTz8jXT1itEaiw2BrvgnZAqoOdAQLXgy2xDI4IYHyjpfL1PV4yQQtYDMvEqzJqDLvhVGKAiCSoNBbLpErJsRrHybXqL0l95P6DX7YO2HSjDGZzgHtn95FpQWrCBaeHi8mx944vsSryVj7eT6Sb8xcDO8fqvWx7F1j8AKh3uGoTCPCuLrbXmc6sUvaQ7m8LFUe2g4xh1tUuHiGIndZopaYEfnCEMBScuOplFQbDjkUTZgOTXPax18bkqbgbOTLzY7SJbKckFuhGz3UYNOnSBJYDXhzVqpusBKLPYjCGa6rwwFNbZFpzgOCkuq6c4CkD4rSRTCuU9IvhYBlbdG7aC7YuVTaor0egpSUNkR9QroJ07FQP8h2lGRRe6rgZbJJdEmfo8Ve3kcPJbrVhVi0loBcaeIwK0NjJjvOVHjKWtY0urT5Hu0uWtcTHyZyPGuEDMvvs9pHxae4swLUh5pimh4FsowdUq0tkXzTOJ5httDvzODWZl3fgJZ83aRBKEOKkHhr59k1BAFqvCssspNs4XD1ifkCRgito1iuOuvlDhqnHvxUXY3HN9y095u3bUEAt8Bf9I8Gdiq13osKer",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxHNSBmwrWAucJktiEiF7T0GrENZ2N7RQ8V7BzbnqVxsrMEtflOJAoWeKe8mUiCgYFPVMDIxu8NTz8jXT1itEaiw2BrvgnZAqoOdAQLXgy2xDI4IYHyjpfL1PV4yQQtYDMvEqzJqDLvhVGKAiCSoNBbLpErJsRrHybXqL0l95P6DX7YO2HSjDGZzgHtn95FpQWrCBaeHi8mx944vsSryVj7eT6Sb8xcDO8fqvWx7F1j8AKh3uGoTCPCuLrbXmc6sUvaQ7m8LFUe2g4xh1tUuHiGIndZopaYEfnCEMBScuOplFQbDjkUTZgOTXPax18bkqbgbOTLzY7SJbKckFuhGz3UYNOnSBJYDXhzVqpusBKLPYjCGa6rwwFNbZFpzgOCkuq6c4CkD4rSRTCuU9IvhYBlbdG7aC7YuVTaor0egpSUNkR9QroJ07FQP8h2lGRRe6rgZbJJdEmfo8Ve3kcPJbrVhVi0loBcaeIwK0NjJjvOVHjKWtY0urT5Hu0uWtcTHyZyPGuEDMvvs9pHxae4swLUh5pimh4FsowdUq0tkXzTOJ5httDvzODWZl3fgJZ83aRBKEOKkHhr59k1BAFqvCssspNs4XD1ifkCRgito1iuOuvlDhqnHvxUXY3HN9y095u3bUEAt8Bf9I8Gdiq13osKer",
+      "estimatedCost": 3
+    },
+    {
+      "id": "ai_accelerator",
+      "name": "AI Accelerator (Optional)",
+      "pins": [
+        "USB 3.0 Type-C"
+      ],
+      "type": "module",
+      "partId": "6439838c-4a6d-4a73-838b-43511aa3838f",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Google+Coral+USB+Accelerator&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "electrical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31epvVOPpwL._SL500_.jpg",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005001377165045.html?pdp_npi=6%40dis%21USD%21120.00%21120.00%21%21%21120.00%21120.00%21%402140d36217794236228387663e123b%2112000015863701909%21affd%21%21%21%211%210%21",
+            "price": "$120",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B07R53D12W?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$128.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07R53D12W?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "65x30x8mm",
+      "description": "GPU acceleration for Hashcat and other compute-intensive tasks.",
+      "productName": "Google Coral USB Accelerator",
+      "purchaseUrl": "https://coral.ai/products/accelerator/",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxQJLmmhdwcjZABrmO2mHE9Xfdzg7MxtoONMMHMXRdNkaA845hp9BmRn61nFARdR3aUA5f3AfMrVS6p9BuncuPD5NYs2xMR7PB37GztjdJjjqtAx2gdHy80loz1C1e1KuohJREGmIrWoUhVxNyFv7n2otkIimW0wT9wHiOXEt6ORecPXaGp583ySJqPEj7wZ5KXz67diqsr0pLeDtqZj5uAI0cCOGhBg6sVGgLmZtCCvMc46Rx4nbhnMmjeri2LpfMo3RIFpk0n6OfAwaGfRVDsF4TFRb0EiY0umJahYceVcQCdmJNZzmSxTfcuhHet778Ck5mfYmRNVpHYRhapya8IcA6VilXs9UgSWdv3eMjVI8NOG0K1TGX2KOyrKAgbhtaLfaVuoSiaBPjwhiSsBBemyL1f7NKZ7wxcct0FhGQME6YG42WzW4EIh3KrudulhgnrOKU12uroIVKuugeapjAsXqGXXWkczUw1W0XXcQrBSLQywWW82ssho6obdvk1fJi21cDMIDQPhPfOHdnrGGdrOEzvJ00tTigOEsHlBgmPuUUZfHvjF9y9DhY98gLJ1Q45be3GUIARgGeSrEfzrOfh99KJA3FEfk7HHSO5lSPNsOvffS0Bl1QltCqsIj7QsrmFPArcjljmLRqAUv7z3zQ8ZH",
+      "estimatedCost": 59.99
+    },
+    {
+      "id": "main_enclosure",
+      "name": "Main Enclosure",
+      "type": "enclosure",
+      "partId": "a2e00c1a-d0bf-453b-98a8-907c629d72db",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=IP67+Waterproof+Project+Box&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/31+P066-AEL._SL500_.jpg",
+      "material": "ABS plastic",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DX75JBLM?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$9.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005003422066803.html?pdp_npi=6%40dis%21USD%213.04%212.94%21%21%213.04%212.94%21%402101611117795012562156569e0f45%2112000025714268080%21affd%21%21%21%211%210%21",
+            "price": "$2.94",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0DX75JBLM?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "150x100x60mm",
+      "description": "Protective housing for all electronics, rated IP67 for water and dust resistance.",
+      "productName": "IP67 Waterproof Project Box",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxhp5vNp9u9u9FEuKFOwBWXy3g3FqCZ9v5mLnoiSUnksIW3NPLQEZWaTX1DF6KHYEPte7fm1o3Bvwi6uMaRit1kkDJtZFLckBlNmGlV1YR58Nys5TPmNNecBXSjk2hqsEoL39F1PZ2q8sPdZ3kPbrhvRHaq0huop0GYiynAuUs49LbCHihUovRm2YT81RbC0C5cAUE2KinreZujEzteMEY3yW815Mjg4lyfWNG5IPT1GInOPyowQTl8BONHc5ldJMhICF78mmByjWzX94V7Sy3e9KaZaWAp7hQBJZsIyjvLPP4aPKfjkzYnLbovSvVbVJOp0RM3xVQlwN7T03RXlei3GCUs7ub8vRgchw5UuIirQex3NIiJoWBbZP3QM0FxDKhRiTHG2XcnnYMWvMxSIHc4WfT6noIJb0ALZ7CtGhrzYGJGXUWJj39EuPF7GEl87jDPL3D8XMtUKgRVuoNFZhZsIPWEgXlOIFhJwIbOy37w7FZDMbVL1CVAHnPtMPX9464KGQtIkdXndS7ZuY33vmkzA481fcjlrjeFhfg1mb7nrxgorRtI5ZQGDKZpyorfpI6tXKFmXRjdPfh5DJZ4pNZzXNDBSWVDc31S08eS5nuPShtcmHRiPdcvKjOkAR8y1H0q5teWR5uY57oG5oph2Qmnb9",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0Jxhp5vNp9u9u9FEuKFOwBWXy3g3FqCZ9v5mLnoiSUnksIW3NPLQEZWaTX1DF6KHYEPte7fm1o3Bvwi6uMaRit1kkDJtZFLckBlNmGlV1YR58Nys5TPmNNecBXSjk2hqsEoL39F1PZ2q8sPdZ3kPbrhvRHaq0huop0GYiynAuUs49LbCHihUovRm2YT81RbC0C5cAUE2KinreZujEzteMEY3yW815Mjg4lyfWNG5IPT1GInOPyowQTl8BONHc5ldJMhICF78mmByjWzX94V7Sy3e9KaZaWAp7hQBJZsIyjvLPP4aPKfjkzYnLbovSvVbVJOp0RM3xVQlwN7T03RXlei3GCUs7ub8vRgchw5UuIirQex3NIiJoWBbZP3QM0FxDKhRiTHG2XcnnYMWvMxSIHc4WfT6noIJb0ALZ7CtGhrzYGJGXUWJj39EuPF7GEl87jDPL3D8XMtUKgRVuoNFZhZsIPWEgXlOIFhJwIbOy37w7FZDMbVL1CVAHnPtMPX9464KGQtIkdXndS7ZuY33vmkzA481fcjlrjeFhfg1mb7nrxgorRtI5ZQGDKZpyorfpI6tXKFmXRjdPfh5DJZ4pNZzXNDBSWVDc31S08eS5nuPShtcmHRiPdcvKjOkAR8y1H0q5teWR5uY57oG5oph2Qmnb9",
+      "estimatedCost": 25
+    },
+    {
+      "id": "enclosure_gasket",
+      "name": "Enclosure Gasket",
+      "type": "misc",
+      "partId": "1be6f7a1-be6e-4573-ad57-0936f34df6fb",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=EPDM+Rubber+Sealing+Strip&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41sn+G5l0NL._SL500_.jpg",
+      "material": "EPDM Rubber",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0DQP7SGKH?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$25.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-epdm-rubber-sealing-strip.html",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0F211C2VF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$16.99",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "300x5x3mm",
+      "description": "Provides a watertight seal between enclosure lid and base.",
+      "productName": "EPDM Rubber Sealing Strip",
+      "purchaseUrl": "https://www.amazon.com/dp/B0F211C2VF?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4lLIkHn",
+      "estimatedCost": 2.5,
+      "amazonUrl": "https://www.amazon.com/dp/B0DQP7SGKH?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "clear_polycarbonate_window",
+      "name": "Camera Lens Window",
+      "type": "enclosure",
+      "partId": "e4bc8011-7b6c-4990-bbca-db238c1de0b4",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=Polycarbonate+Sheet+Clear&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51xxSpS9HjL._SL500_.jpg",
+      "material": "Polycarbonate",
+      "quantity": 1,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B07MQTDF4R?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$9.95",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005008306484981.html?pdp_npi=6%40dis%21USD%2111.63%2110.00%21%21%2178.66%2167.65%21%40214114e317794878890844358e11a1%2112000044562133650%21affd%21%21%21%211%210%21",
+            "price": "$10",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B07MQTDF4R?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "40x40x3mm",
+      "description": "Impact-resistant, clear window for the camera lens, sealed into the enclosure.",
+      "productName": "Polycarbonate Sheet Clear",
+      "purchaseUrl": "https://www.amazon.com/dp/B07MQTDF4R?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxwXqkvBGEhUxAWGGn9pSSlQ5HXCbIyl3yz4nXmQYrWdlnpLhB2CYUswmpnBe42kt9aE52SIq0wFC5Ldy2GycX5DcXJK91pj3bxjgcvleaqpgPdS0tv5OdXWbWOliG1w4plJbT6AJqQPpAYZqilZZS4yNDBJpYCBhgy71n5Zxi9qI8WMQFSwb8xAfOb6mQGc9ilR09DZI5P4MkJb6LtkvixruYPX4WD41b4H2jUxMQWjlY52cMV86jUD7117T8Pnm5VhWRz77ZY3Sarx4WSxcvM36PgwR0b76QA5kwQyP68hm3hXXyN7C5MZXEl8DQlH9g6ugtcMK4jsABOBJaNNhjwDwPm0tRwB5NuJR8NEyTff1wmK4Enf7hEgCBjaFBFi7zQLxmKiJRILZxIxusJpDp2hPbEB5Ja1vwhdyuMb0qrPnEXqsZQwF0YDqZiM2jRSC9UwM0j8x0wGgMpRy1DSqsUdc31T3diTwsDaFjW0Rdnwu8IEIwLgyg13nmonUQ4ysewGZokmBgoA210ZV2bqtsUjw8kBsDpiWhGmg6XN3AJwJRcZwfNru04lQu0STL70MlqyI5v3LyPHetTxNGl8p2AdDKjeyk5dNdzpQKe9w3XKXe1NuoQ0WNNxCQ6Z7YHGd8d81udTpJcGkHSHUodNqbiDH",
+      "estimatedCost": 3
+    },
+    {
+      "id": "m3_screws_enclosure_lid",
+      "name": "Enclosure Lid Screws",
+      "type": "misc",
+      "partId": "f0807023-e524-4d42-b1ef-c98b554d279a",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3x10mm+Stainless+Steel+Machine+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/41pSv00zxoL._SL500_.jpg",
+      "material": "Stainless Steel",
+      "quantity": 6,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0FKLRP6P4?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$6.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/w/wholesale-m3x10mm-stainless-steel-machine-screws.html",
+            "vendor": "AliExpress"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0FKLRP6P4?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x10mm",
+      "description": "Secures the enclosure lid to the base, maintaining the IP67 seal.",
+      "productName": "M3x10mm Stainless Steel Machine Screws",
+      "purchaseUrl": "https://www.amazon.com/dp/B0FKLRP6P4?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c4EyrNC1",
+      "estimatedCost": 0.15
+    },
+    {
+      "id": "m2_screws_internal_mounts",
+      "name": "Internal Component Mount Screws",
+      "type": "misc",
+      "partId": "87b4018c-08f1-4121-95cb-2197eb50e15e",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M2x6mm+Stainless+Steel+Machine+Screws&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/315m6gXIFKL._SL500_.jpg",
+      "material": "Stainless Steel",
+      "quantity": 12,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.amazon.com/dp/B0F3TT59Z8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$7.59",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/4000415351513.html?pdp_npi=6%40dis%21USD%212.53%212.47%21%21%212.53%212.47%21%4021013cc617796104198047523e101d%2110000001714894152%21affd%21%21%21%211%210%21",
+            "price": "$2.47",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CMCTX529?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$4.69",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0F3TT59Z8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M2x6mm",
+      "description": "Small screws for securing various components to 3D-printed internal mounts.",
+      "productName": "M2x6mm Stainless Steel Machine Screws",
+      "purchaseUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3xpjK0z5F4tXx7la8qLVQd4zJbXyg9diysW3PHwGTu85I9JjiCmsvKplXTYmguI8XJGrNlkrtmG1r8OFGY36EuLkLaEKeKmtdYypJdq8pfFd9leqOVlYBEtid5QVaRhPg4FvcknwYv4M1FPQdY6sXMbaRafMOaj8RCpLpdKQ9BVDO4lWRGseXly3Uv1yNePHOD3bdBn3rMn5Ifr2mQDCgfm7iNoEhyPRUJM6WEdotDMNh2fA3qOBjrG8I0MJD4ANLj6q3mxc4tn2wT6DCjQp84Bno3YoyopGwCPPVNL5qXn46frNcwbeUnHv8Jl6FxXAzXlxDzEdjto7VWcvbaVrPRU6QXBlppU1lpHSrg10Vyk7JmlaPNArTB1rSfjEbVG4M1E5nBN8jyI2QcWMkGtyiN3E8ULh56BVXXJXJR8pufPfTko1Bo62S8nbkmGYRuK6EvNmgog9SbrpUH2U476HUPlCmH853tQ5k9XbMwv7QD9D3DfDQrSxRAAp3VIvWsAOpIY2CeVDHQcO5Tbxk61sNV8pXDZdcTyEJlYKam0mUPzEPjVVJT8QvYGwQhtBxIYcpTudJxpRI71jBo9l85WVow6oek00PYs8X7v2a80WLwCP3bZvjTUuZbilwW0QcLZE7ICp6ztoZOLzeJpRzhFLSbHv1ZVFDKO2wkJBMpInxmzizvPJp5539t",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3xpjK0z5F4tXx7la8qLVQd4zJbXyg9diysW3PHwGTu85I9JjiCmsvKplXTYmguI8XJGrNlkrtmG1r8OFGY36EuLkLaEKeKmtdYypJdq8pfFd9leqOVlYBEtid5QVaRhPg4FvcknwYv4M1FPQdY6sXMbaRafMOaj8RCpLpdKQ9BVDO4lWRGseXly3Uv1yNePHOD3bdBn3rMn5Ifr2mQDCgfm7iNoEhyPRUJM6WEdotDMNh2fA3qOBjrG8I0MJD4ANLj6q3mxc4tn2wT6DCjQp84Bno3YoyopGwCPPVNL5qXn46frNcwbeUnHv8Jl6FxXAzXlxDzEdjto7VWcvbaVrPRU6QXBlppU1lpHSrg10Vyk7JmlaPNArTB1rSfjEbVG4M1E5nBN8jyI2QcWMkGtyiN3E8ULh56BVXXJXJR8pufPfTko1Bo62S8nbkmGYRuK6EvNmgog9SbrpUH2U476HUPlCmH853tQ5k9XbMwv7QD9D3DfDQrSxRAAp3VIvWsAOpIY2CeVDHQcO5Tbxk61sNV8pXDZdcTyEJlYKam0mUPzEPjVVJT8QvYGwQhtBxIYcpTudJxpRI71jBo9l85WVow6oek00PYs8X7v2a80WLwCP3bZvjTUuZbilwW0QcLZE7ICp6ztoZOLzeJpRzhFLSbHv1ZVFDKO2wkJBMpInxmzizvPJp5539t",
+      "estimatedCost": 0.1
+    },
+    {
+      "id": "m3_threaded_inserts",
+      "name": "M3 Heat-Set Inserts",
+      "type": "misc",
+      "partId": "a218c217-5ff2-453c-bf9b-0cb77fe40758",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M3+Brass+Heat+Set+Inserts&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://m.media-amazon.com/images/I/51Le5SVH7JL._SL500_.jpg",
+      "quantity": 10,
+      "research": {
+        "specs": [
+          {
+            "label": "material",
+            "value": "Brass"
+          },
+          {
+            "label": "length_mm",
+            "value": "6.4"
+          },
+          {
+            "label": "application",
+            "value": "Plastic"
+          },
+          {
+            "label": "insert_type",
+            "value": "Heat-Set"
+          },
+          {
+            "label": "thread_size",
+            "value": "M3"
+          },
+          {
+            "label": "mcmaster_url",
+            "value": "https://www.mcmaster.com/94180A333"
+          },
+          {
+            "label": "thread_pitch",
+            "value": "0.5"
+          },
+          {
+            "label": "mcmaster_part_number",
+            "value": "94180A333"
+          }
+        ],
+        "sourcing": [
+          {
+            "url": "https://www.mcmaster.com/94180A333",
+            "vendor": "McMaster-Carr"
+          },
+          {
+            "url": "https://www.adafruit.com/product/4255",
+            "price": "$5.95",
+            "vendor": "Adafruit"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$8.99",
+            "vendor": "Amazon"
+          },
+          {
+            "url": "https://www.aliexpress.com/item/1005006351445007.html?pdp_npi=6%40dis%21USD%2112.01%216.25%21%21%2181.43%2142.41%21%402141149b17793251850437285e1158%2112000036858180035%21affd%21%21%21%211%210%21",
+            "price": "$6.25",
+            "vendor": "AliExpress"
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "McMaster-Carr M3 Brass Heat-Set Insert, 3.8mm Length",
+            "reason": "A shorter M3 brass heat-set insert option from McMaster-Carr, part number 94180A331 (M3-.5 Internal Thread, 3.8mm Length)."
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/dp/B0CS6VZYL8?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "dimensions": "M3x4mm",
+      "description": "Brass threaded inserts for creating robust screw threads in 3D-printed parts.",
+      "productName": "M3 Brass Heat Set Inserts",
+      "purchaseUrl": "https://www.adafruit.com/product/4255",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRpTpv62RXR9sVfC98GmMLkJmXC4qpbJhcQvkbxptOmgDfhTbS0PHwVgmr0VhydRzMgIoquzg3yg5D05i1x7FPxzxIl3P5mtn3X76qprXJgmg8InDgseeFkYRIIwB95RGJoFep43tAYGEBIRAZZ6LvWcRuoiSpUrlsk0dOnD41f9DJE08hfuSws15ysCxPxduPqEdOBJqzG04NUdFJ3bWrfijdWCN43CSC9mYDkrFhwwBbQVz82VhOIzQnJDGqhjn3119Vw7ZBsbw5zNsuKCnHfhCbxRPNLdII35nubRaiPuAYxgMIty1KMm8HZY6F24WzUNGNr5Ay28BHTyNjrjgt37wwssKrFvlAkOc5eRVIfTsSPf00gPtpAnzrYCtO6pa4kt7Oim5FLl2fo9qzTlncqIyd0FnXRaj8FR9jadMKDscIUwEZtfGnXX3P4fbw1kDhD2QSSJMAn5RvUfmbQoftnN7hwclCo2YteNbSFQAlUTLnDvyAuTFcIVw4tUUdoYhbRuWVI1mNuQLwgrpJQ8M1sDLKul4ZypKQqK0WzxjP33EG9LwNWvX48ub96mvj0CpIbLhMAbjsoKwt5GdKy2tzmAgkWEcWjNuBrzPdW6qbqkvKztM8k9TpouDclbRaxH4aTLDpxLZe7KN7MOAMFYQW5H",
+      "estimatedCost": 0.2
+    },
+    {
+      "id": "camera_module_mount",
+      "name": "Camera Module Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "camera_module",
+      "dimensions": "30x30x10mm",
+      "description": "3D-printed bracket to securely mount the camera module.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.5,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "mcu_mount_plate",
+      "name": "MCU Mount Plate",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "main_mcu",
+      "dimensions": "70x35x5mm",
+      "description": "3D-printed plate for mounting the main microcontroller securely inside the enclosure.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 1,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "cellular_modem_mount",
+      "name": "Cellular Modem Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "cellular_modem",
+      "dimensions": "40x30x8mm",
+      "description": "Custom mount to hold the cellular modem module.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.75,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "battery_pack_holder",
+      "name": "Battery Pack Holder",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "battery_pack",
+      "dimensions": "75x40x20mm",
+      "description": "Holder designed to securely cradle the LiPo battery pack, preventing movement.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 1.2,
+      "printSettings": "25% infill, 0.2mm layer"
+    },
+    {
+      "id": "battery_management_mount",
+      "name": "Battery Management Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "battery_management",
+      "dimensions": "30x20x5mm",
+      "description": "Small bracket for mounting the battery management system board.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.4,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "buck_converter_mount",
+      "name": "Buck Converter Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "buck_converter",
+      "dimensions": "25x20x5mm",
+      "description": "Mounting piece for the voltage regulator board.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.35,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "ai_accelerator_mount",
+      "name": "AI Accelerator Mount",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "mountsFor": "ai_accelerator",
+      "dimensions": "60x30x8mm",
+      "description": "If included, this mount holds the AI accelerator board.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.8,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "internal_base_plate",
+      "name": "Internal Base Plate",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "140x90x3mm",
+      "description": "Flat 3D-printed panel inside the enclosure to mount other components and organize wiring.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 1.5,
+      "printSettings": "20% infill, 0.2mm layer"
+    },
+    {
+      "id": "camera_lens_shroud",
+      "name": "Camera Lens Shroud",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PETG",
+      "quantity": 1,
+      "dimensions": "35x35x15mm",
+      "description": "3D-printed shroud to focus the camera lens through the polycarbonate window and block internal reflections.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PETG+filament",
+      "estimatedCost": 0.6,
+      "printSettings": "100% infill, 0.15mm layer"
+    },
+    {
+      "id": "trashcan_clamp_top",
+      "name": "Trashcan Clamp (Top)",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "ABS",
+      "quantity": 1,
+      "dimensions": "100x50x30mm",
+      "description": "Upper part of a two-piece clamp system designed to secure the device to the inner rim of a trashcan.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+ABS+filament",
+      "estimatedCost": 2.5,
+      "printSettings": "40% infill, 0.2mm layer"
+    },
+    {
+      "id": "trashcan_clamp_bottom",
+      "name": "Trashcan Clamp (Bottom)",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "ABS",
+      "quantity": 1,
+      "dimensions": "100x50x30mm",
+      "description": "Lower part of a two-piece clamp system designed to secure the device to the inner rim of a trashcan.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+ABS+filament",
+      "estimatedCost": 2.5,
+      "printSettings": "40% infill, 0.2mm layer"
+    },
+    {
+      "id": "m5_thumb_screw",
+      "name": "Clamp Thumb Screw",
+      "type": "misc",
+      "partId": "a06aae6e-55fd-4af9-8667-fe12ad2f1274",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M5x30mm+Stainless+Steel+Thumb+Screw&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "quantity": 2,
+      "dimensions": "M5x30mm",
+      "description": "Thumb screw to tighten the 3D-printed trashcan clamp for tool-less installation.",
+      "productName": "M5x30mm Stainless Steel Thumb Screw",
+      "purchaseUrl": "https://www.amazon.com/s?k=M5+stainless+steel+thumb+screw",
+      "aliexpressUrl": "https://s.click.aliexpress.com/e/_c2JCQsXX",
+      "estimatedCost": 1.5
+    },
+    {
+      "id": "m5_nut",
+      "name": "Clamp Nut",
+      "type": "misc",
+      "partId": "6cc58cde-4088-42e4-9876-d4a2de253676",
+      "ebayUrl": "https://www.ebay.com/sch/i.html?_nkw=M5+Stainless+Steel+Lock+Nut&_sacat=0&_from=R40&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339153059&customid=blueprint&toolid=10001&mkevt=1",
+      "category": "mechanical",
+      "imageUrl": "https://ae-pic-a1.aliexpress-media.com/kf/Sb8932b098d2a484ca47b504a91512336f.jpg",
+      "quantity": 2,
+      "research": {
+        "sourcing": [
+          {
+            "url": "https://www.aliexpress.com/item/1005009398121153.html?pdp_npi=6%40dis%21USD%2119.96%219.58%21%21%21135.05%2164.82%21%402140d33617796224708125457e0f7d%2112000048978998933%21affd%21%21%21%211%210%21",
+            "price": "$9.58",
+            "vendor": "AliExpress"
+          },
+          {
+            "url": "https://www.amazon.com/dp/B0761189F5?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+            "price": "$5.23",
+            "vendor": "Amazon"
+          }
+        ]
+      },
+      "dimensions": "M5",
+      "description": "Lock nut to secure the thumb screw for the trashcan clamp.",
+      "productName": "M5 Stainless Steel Lock Nut",
+      "purchaseUrl": "https://www.amazon.com/dp/B0761189F5?tag=blueprintam-20&linkCode=osi&th=1&psc=1",
+      "aliexpressUrl": "https://s.click.aliexpress.com/s/fwx308cRD9Eny963e3KDdYxyIpNj8TXVr7saiF9Um5rMUg1kZtJALLnfa2LNXtiVgnxdD8Og6MmvwBoxhnSYQGM6r0c08U4TfX8DFGo7vviCuu3q62Q60OAhRZcqm3G8PtwM69xY7TOEWRrvulP5ukZQ4uQbBBtaVsdr6EffAqVmp3O5GyUANU2DoA3dJufNhDfh7KOlLgKIvRVhDxRESHLmea6fTE26gLUqKEUuuizJiLENrCbax94DZHDu8WhaXM9vQ86gzlqceNPO5w3vwXm4VrBF3x2lAMEl06wgNdTSMiT7cNG4HIdW0JxRWadjrKF2psqVMyB3QWhiE8bEHNae4pLsAHOu9LtGnlAVOCykkh9LKZ2ExDYDo2UFsNwMzv89pPbNMDMo4aIgDYMkdr9KPYssRfYAff3sVmgBTK9xQvEYnp44wiEUaJK7K51oIIOTbTvHTWG9QnWm0jWF0I2BgYi11PeqgGCfB7PrDMotpEN8BfLsCZBz5A4zuNpOpTKOHtedStAxG2eJtzfvPjgu6v8DVfbTm7DVpc6KVt97HOXe2m1YSDe6feKQjEVuQwFXJCAz3lfsjiQir95liwxqaotjFG2xEu9CMguziBy9UPIIUhwRoUjhTlx9EZn1FePmyfGK7wLqwsaSp4eUhAfqhqyd24R1oBBP2MYtoggxlETo2KOujwcEQf0hKA8pdUfxB3E4YrPtj0FTXYBOnET65UTrYVqU2pqqKk0CJ02ja3mPvfGSFjdvVouQ1SJiXlGNWR44vDQD9eLKR9cYt0RK3wJE4lApCwBBKu5ODKQGnsnAA3P2xcfGmuXOLMAuKdOMkULbTIm8K2gnYnt5kY0im9apP7UmQFEpKJqE8lWTvxwjy69A495j07dhqvEGnAsmZ5GlVkvBzH623wDCMvnFoUj7XXJInmT1rdleRtkCG73EXXyCG7KLE2rhywdmgDwIQjUCcouz6TA3cn",
+      "estimatedCost": 0.2,
+      "amazonUrl": "https://www.amazon.com/dp/B0761189F5?tag=blueprintam-20&linkCode=osi&th=1&psc=1"
+    },
+    {
+      "id": "cable_management_clip",
+      "name": "Cable Management Clip",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "material": "PLA",
+      "quantity": 4,
+      "dimensions": "15x10x5mm",
+      "description": "Small clips to route and secure internal wiring for a tidy and robust assembly.",
+      "purchaseUrl": "https://www.amazon.com/s?k=3D+printer+PLA+filament",
+      "estimatedCost": 0.1,
+      "printSettings": "20% infill, 0.2mm layer"
+    }
+  ],
+  "notes": [
+    "small camera",
+    "sit inside",
+    "NYC trashcans",
+    "identify compostable"
+  ],
+  "projectName": "Trashcan Compost Camera",
+  "originalPrompt": "I want to build a small camera that can sit inside of a nyc public trashcans and what it needs to be able to do is to take photos if the trash and identify what is compostable.",
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print all custom mechanical components",
+          "partIds": [
+            "camera_module_mount",
+            "mcu_mount_plate",
+            "cellular_modem_mount",
+            "battery_pack_holder",
+            "battery_management_mount",
+            "buck_converter_mount",
+            "ai_accelerator_mount",
+            "internal_base_plate",
+            "camera_lens_shroud",
+            "trashcan_clamp_top",
+            "trashcan_clamp_bottom",
+            "cable_management_clip"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "Insert M3 threaded inserts into main enclosure and internal base plate",
+          "partIds": [
+            "m3_threaded_inserts",
+            "main_enclosure",
+            "internal_base_plate"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Test fit the clear polycarbonate window and enclosure gasket into the main enclosure",
+          "partIds": [
+            "main_enclosure",
+            "clear_polycarbonate_window",
+            "enclosure_gasket"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Test fit electrical components into their respective 3D printed mounts",
+          "partIds": [
+            "camera_module_mount",
+            "camera_module",
+            "mcu_mount_plate",
+            "main_mcu",
+            "cellular_modem_mount",
+            "cellular_modem",
+            "battery_pack_holder",
+            "battery_pack",
+            "battery_management_mount",
+            "battery_management",
+            "buck_converter_mount",
+            "buck_converter",
+            "ai_accelerator_mount",
+            "ai_accelerator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Connect battery pack to battery management system",
+          "partIds": [
+            "battery_pack",
+            "battery_management"
+          ]
+        },
+        {
+          "id": "wire_2",
+          "title": "Wire battery management system output to buck converter input",
+          "partIds": [
+            "battery_management",
+            "buck_converter"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Connect buck converter output to main MCU and cellular modem power inputs",
+          "partIds": [
+            "buck_converter",
+            "main_mcu",
+            "cellular_modem"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Connect camera module to main MCU for power and CSI-2 data",
+          "partIds": [
+            "main_mcu",
+            "camera_module"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Wire cellular modem to main MCU for UART data and GPIO control",
+          "partIds": [
+            "main_mcu",
+            "cellular_modem"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Connect AI accelerator to main MCU via USB 3.0 Type-C for power and data",
+          "partIds": [
+            "main_mcu",
+            "ai_accelerator"
+          ]
+        },
+        {
+          "id": "wire_7",
+          "title": "Perform continuity and polarity checks on all power connections",
+          "partIds": [
+            "battery_pack",
+            "battery_management",
+            "buck_converter",
+            "main_mcu",
+            "cellular_modem",
+            "camera_module",
+            "ai_accelerator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Apply initial power to the main MCU and verify power indicator LEDs",
+          "partIds": [
+            "main_mcu",
+            "buck_converter",
+            "battery_management",
+            "battery_pack"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Flash base firmware onto the main MCU",
+          "partIds": [
+            "main_mcu"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Test camera module detection and acquire a test image",
+          "partIds": [
+            "main_mcu",
+            "camera_module"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Verify cellular modem communication via UART and test basic AT commands",
+          "partIds": [
+            "main_mcu",
+            "cellular_modem"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Confirm AI accelerator detection and run a diagnostic test",
+          "partIds": [
+            "main_mcu",
+            "ai_accelerator"
+          ]
+        },
+        {
+          "id": "bringup_6",
+          "title": "Monitor battery charging/discharging with the BMS",
+          "partIds": [
+            "battery_management",
+            "battery_pack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Mount the camera module into its mount and attach to the internal base plate",
+          "partIds": [
+            "camera_module",
+            "camera_module_mount",
+            "internal_base_plate",
+            "m2_screws_internal_mounts"
+          ]
+        },
+        {
+          "id": "assemble_2",
+          "title": "Mount main MCU, cellular modem, battery pack, BMS, buck converter, and AI accelerator to their respective mounts and then to the internal base plate",
+          "partIds": [
+            "main_mcu",
+            "mcu_mount_plate",
+            "cellular_modem",
+            "cellular_modem_mount",
+            "battery_pack",
+            "battery_pack_holder",
+            "battery_management",
+            "battery_management_mount",
+            "buck_converter",
+            "buck_converter_mount",
+            "ai_accelerator",
+            "ai_accelerator_mount",
+            "internal_base_plate",
+            "m2_screws_internal_mounts"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Install the camera lens shroud and secure the clear polycarbonate window with the gasket into the main enclosure",
+          "partIds": [
+            "camera_lens_shroud",
+            "clear_polycarbonate_window",
+            "enclosure_gasket",
+            "main_enclosure"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Mount the assembled internal base plate with all components into the main enclosure",
+          "partIds": [
+            "internal_base_plate",
+            "main_enclosure",
+            "m2_screws_internal_mounts"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Secure the trashcan clamp top to the main enclosure",
+          "partIds": [
+            "trashcan_clamp_top",
+            "main_enclosure",
+            "m3_screws_enclosure_lid"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Assemble the trashcan clamp bottom with the M5 thumb screw and nut",
+          "partIds": [
+            "trashcan_clamp_bottom",
+            "m5_thumb_screw",
+            "m5_nut",
+            "trashcan_clamp_top"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Attach cable management clips to internal base plate and route wires neatly",
+          "partIds": [
+            "cable_management_clip",
+            "internal_base_plate"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Close the main enclosure lid and secure with M3 screws",
+          "partIds": [
+            "main_enclosure",
+            "m3_screws_enclosure_lid"
+          ]
+        }
+      ]
+    }
+  ],
+  "projectDescription": "A small, battery-powered camera system, equipped with a Main Controller and Camera Sensor, integrates into NYC public trashcans to identify compostable waste using AI, transmitting data via a Cellular Data Modem. Encased in a durable enclosure, it utilizes clamps for secure internal mounting.",
+  "imagePromptSnapshot": {
+    "tags": [
+      "small camera",
+      "sit inside",
+      "NYC trashcans",
+      "identify compostable"
+    ],
+    "description": "Project idea: I want to build a small camera that can sit inside of a nyc public trashcans and what it needs to be able to do is to take photos if the trash and identify what is compostable.\n\nDesign notes: small camera, sit inside, NYC trashcans, identify compostable\n\nElectrical components (current): Main Controller (mcu, 65x30x5mm); Camera Sensor (sensor, 25x23x9mm); 2x module: Cellular Data Modem, AI Accelerator (Optional); 3x power: Li-Ion Battery Pack, Battery Management System, Voltage Regulator for Pi\n\nMechanical/structural parts (current): 2x enclosure: Main Enclosure, Camera Lens Window; 6x misc: Enclosure Gasket, Enclosure Lid Screws, Internal Component Mount Screws, M3 Heat-Set Inserts +2 more; 12x 3d_printed: Camera Module Mount, MCU Mount Plate, Cellular Modem Mount, Battery Pack Holder +8 more\n\nAssembly: Main Enclosure → Enclosure Gasket (seals against); Main Enclosure → Camera Lens Window (sealed into opening with gasket); Main Enclosure → Enclosure Lid Screws (accepts M3 screws for lid); Main Enclosure → Internal Base Plate (mounted inside with M2 screws); M3 Heat-Set Inserts → Main Enclosure (inserted into posts/bosses); M3 Heat-Set Inserts → Internal Base Plate (inserted into posts/bosses); Camera Module Mount → Internal Base Plate (mounted with M2 screws); MCU Mount Plate → Internal Base Plate (mounted with M2 screws); Cellular Modem Mount → Internal Base Plate (mounted with M2 screws); Battery Pack Holder → Internal Base Plate (mounted with M2 screws); Battery Management Mount → Internal Base Plate (mounted with M2 screws); Buck Converter Mount → Internal Base Plate (mounted with M2 screws); AI Accelerator Mount → Internal Base Plate (mounted with M2 screws); Internal Component Mount Screws → Internal Base Plate (threaded into); Camera Lens Shroud → Camera Lens Window (press-fit around camera side) (+12 more connections)"
+  },
+  "instructionPreamble": {
+    "tools": [
+      "3D printer (PETG, ABS, PLA capable)",
+      "M2 hex key/screwdriver",
+      "M3 hex key/screwdriver",
+      "M5 wrench/socket",
+      "Soldering iron (fine tip)",
+      "Solder and flux",
+      "Wire strippers",
+      "Precision tweezers",
+      "Multimeter",
+      "Heat gun (for heat-set inserts)",
+      "Cyanoacrylate adhesive (super glue)"
+    ],
+    "assumptions": [
+      "Basic soldering experience with small components",
+      "Familiarity with 3D printer operation and material handling",
+      "Basic electronics knowledge for power and data connections",
+      "Development environment set up for main_mcu (e.g., OS, SDK, IDE)",
+      "Ability to flash firmware onto main_mcu"
+    ]
+  },
+  "electricalConnections": [
+    {
+      "type": "power",
+      "label": "Battery to BMS Input",
+      "source": "battery_pack",
+      "target": "battery_management",
+      "current": "5A",
+      "voltage": "3.7V"
+    },
+    {
+      "type": "power",
+      "label": "BMS Output to Buck Converter",
+      "source": "battery_management",
+      "target": "buck_converter",
+      "current": "3A",
+      "voltage": "3.7V"
+    },
+    {
+      "type": "power",
+      "label": "5V to Main MCU",
+      "source": "buck_converter",
+      "target": "main_mcu",
+      "current": "2A",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "5V to Cellular Modem",
+      "source": "buck_converter",
+      "target": "cellular_modem",
+      "current": "500mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "power",
+      "label": "3.3V to Camera Module",
+      "source": "main_mcu",
+      "target": "camera_module",
+      "current": "200mA",
+      "voltage": "3.3V"
+    },
+    {
+      "type": "power",
+      "label": "USB Power to AI Accelerator",
+      "source": "main_mcu",
+      "target": "ai_accelerator",
+      "current": "900mA",
+      "voltage": "5V"
+    },
+    {
+      "type": "data",
+      "label": "CSI Data",
+      "source": "main_mcu",
+      "target": "camera_module",
+      "protocol": "dsi",
+      "sourcePin": "CSI",
+      "targetPin": "CSI-2"
+    },
+    {
+      "type": "data",
+      "label": "MCU UART TX to Modem RX",
+      "source": "main_mcu",
+      "target": "cellular_modem",
+      "protocol": "uart",
+      "sourcePin": "UART_TX",
+      "targetPin": "RXD"
+    },
+    {
+      "type": "data",
+      "label": "MCU UART RX to Modem TX",
+      "source": "main_mcu",
+      "target": "cellular_modem",
+      "protocol": "uart",
+      "sourcePin": "UART_RX",
+      "targetPin": "TXD"
+    },
+    {
+      "type": "data",
+      "label": "Modem Power Control",
+      "source": "main_mcu",
+      "target": "cellular_modem",
+      "protocol": "gpio",
+      "sourcePin": "GPIO_3",
+      "targetPin": "PWRKEY"
+    },
+    {
+      "type": "data",
+      "label": "USB 3.0 Data to AI Accelerator",
+      "source": "main_mcu",
+      "target": "ai_accelerator",
+      "protocol": "usb",
+      "sourcePin": "USB",
+      "targetPin": "USB 3.0 Type-C"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "label": "seals against",
+      "source": "main_enclosure",
+      "target": "enclosure_gasket"
+    },
+    {
+      "label": "sealed into opening with gasket",
+      "source": "main_enclosure",
+      "target": "clear_polycarbonate_window"
+    },
+    {
+      "label": "accepts M3 screws for lid",
+      "source": "main_enclosure",
+      "target": "m3_screws_enclosure_lid"
+    },
+    {
+      "label": "mounted inside with M2 screws",
+      "source": "main_enclosure",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "inserted into posts/bosses",
+      "source": "m3_threaded_inserts",
+      "target": "main_enclosure"
+    },
+    {
+      "label": "inserted into posts/bosses",
+      "source": "m3_threaded_inserts",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "camera_module_mount",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "mcu_mount_plate",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "cellular_modem_mount",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "battery_pack_holder",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "battery_management_mount",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "buck_converter_mount",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mounted with M2 screws",
+      "source": "ai_accelerator_mount",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "threaded into",
+      "source": "m2_screws_internal_mounts",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "press-fit around camera side",
+      "source": "camera_lens_shroud",
+      "target": "clear_polycarbonate_window"
+    },
+    {
+      "label": "threaded through",
+      "source": "trashcan_clamp_top",
+      "target": "m5_thumb_screw"
+    },
+    {
+      "label": "interfaces with",
+      "source": "trashcan_clamp_top",
+      "target": "trashcan_clamp_bottom"
+    },
+    {
+      "label": "retains M5 thumb screw",
+      "source": "trashcan_clamp_bottom",
+      "target": "m5_nut"
+    },
+    {
+      "label": "attached via M3 screws",
+      "source": "main_enclosure",
+      "target": "trashcan_clamp_top"
+    },
+    {
+      "label": "mounted with adhesive/small screw",
+      "source": "cable_management_clip",
+      "target": "internal_base_plate"
+    },
+    {
+      "label": "mount",
+      "source": "camera_module_mount",
+      "target": "camera_module"
+    },
+    {
+      "label": "mount",
+      "source": "mcu_mount_plate",
+      "target": "main_mcu"
+    },
+    {
+      "label": "mount",
+      "source": "cellular_modem_mount",
+      "target": "cellular_modem"
+    },
+    {
+      "label": "mount",
+      "source": "battery_pack_holder",
+      "target": "battery_pack"
+    },
+    {
+      "label": "mount",
+      "source": "battery_management_mount",
+      "target": "battery_management"
+    },
+    {
+      "label": "mount",
+      "source": "buck_converter_mount",
+      "target": "buck_converter"
+    },
+    {
+      "label": "mount",
+      "source": "ai_accelerator_mount",
+      "target": "ai_accelerator"
+    }
+  ],
+  "projectId": "f9d82592-6478-4860-923e-bfcd7044a50c"
+}

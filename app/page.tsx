@@ -1,238 +1,287 @@
-import fs from "fs";
-import path from "path";
+import Image from "next/image";
+import Link from "next/link";
 
-type CategoryMetrics = {
-  recall: number;
-  precision: number;
-};
-
-type PhotoScore = {
-  photo_id: string;
-  items_identified: number;
-  classification_accuracy: number;
-  compostable: CategoryMetrics;
-  recyclable: CategoryMetrics;
-  landfill: CategoryMetrics;
-  matched: number;
-  ground_truth_count: number;
-  detected_count: number;
-};
-
-type ModelScore = {
-  model: string;
-  items_identified: number;
-  classification_accuracy: number;
-  compostable: CategoryMetrics;
-  recyclable: CategoryMetrics;
-  landfill: CategoryMetrics;
-  avg_latency_ms: number;
-  failure_rate: number;
-  per_photo: PhotoScore[];
-};
-
-function pct(n: number) {
-  return `${(n * 100).toFixed(1)}%`;
-}
-
-function loadScores(): ModelScore[] | null {
-  const scoresPath = path.join(process.cwd(), "evals/results/scores.json");
-  if (!fs.existsSync(scoresPath)) return null;
-  return JSON.parse(fs.readFileSync(scoresPath, "utf-8"));
-}
-
-function MetricCard({ label, value }: { label: string; value: string }) {
+function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-lg bg-gray-900 border border-gray-800 p-4">
-      <p className="text-xs uppercase tracking-wide text-gray-400">{label}</p>
-      <p className="mt-1 text-2xl font-semibold text-white">{value}</p>
+    <h2 className="mb-4 text-2xl font-bold tracking-tight text-white">
+      {children}
+    </h2>
+  );
+}
+
+function PhaseCard({
+  phase,
+  title,
+  status,
+  children,
+}: {
+  phase: string;
+  title: string;
+  status: "current" | "next" | "future";
+  children: React.ReactNode;
+}) {
+  const statusColors = {
+    current: "border-green-500/50 bg-green-950/20",
+    next: "border-blue-500/50 bg-blue-950/20",
+    future: "border-gray-700 bg-gray-900/50",
+  };
+  const statusLabels = {
+    current: "In Progress",
+    next: "Up Next",
+    future: "Future",
+  };
+  const statusBadgeColors = {
+    current: "bg-green-500/20 text-green-400",
+    next: "bg-blue-500/20 text-blue-400",
+    future: "bg-gray-700 text-gray-400",
+  };
+
+  return (
+    <div
+      className={`rounded-xl border p-6 ${statusColors[status]}`}
+    >
+      <div className="mb-3 flex items-center justify-between">
+        <span className="text-sm font-medium text-gray-400">{phase}</span>
+        <span
+          className={`rounded-full px-3 py-1 text-xs font-medium ${statusBadgeColors[status]}`}
+        >
+          {statusLabels[status]}
+        </span>
+      </div>
+      <h3 className="mb-3 text-lg font-semibold text-white">{title}</h3>
+      <div className="text-sm leading-relaxed text-gray-300">{children}</div>
     </div>
   );
 }
 
-function colorForScore(score: number) {
-  if (score >= 0.8) return "text-green-400";
-  if (score >= 0.6) return "text-yellow-400";
-  return "text-red-400";
+function TaxonomyRow({
+  category,
+  examples,
+  color,
+}: {
+  category: string;
+  examples: string;
+  color: "green" | "blue" | "gray";
+}) {
+  const colors = {
+    green: "text-green-400",
+    blue: "text-blue-400",
+    gray: "text-gray-400",
+  };
+  return (
+    <tr className="border-b border-gray-800/50">
+      <td className={`px-4 py-3 font-medium ${colors[color]}`}>{category}</td>
+      <td className="px-4 py-3 text-gray-300">{examples}</td>
+    </tr>
+  );
 }
 
 export default function Home() {
-  const scores = loadScores();
-
-  if (!scores) {
-    return (
-      <main className="mx-auto max-w-4xl px-6 py-16">
-        <h1 className="text-3xl font-bold">Compost & Recycling Waste Identifier</h1>
-        <p className="mt-2 text-gray-400">Model evaluation dashboard</p>
-        <div className="mt-12 rounded-lg border border-gray-800 bg-gray-900 p-8 text-center">
-          <p className="text-lg text-gray-300">No results yet</p>
-          <p className="mt-2 text-sm text-gray-500">
-            Run the eval and scoring scripts first:
-          </p>
-          <pre className="mt-4 inline-block rounded bg-gray-800 px-4 py-2 text-left text-sm text-gray-300">
-            {`npm run eval\nnpm run score`}
-          </pre>
-        </div>
-      </main>
-    );
-  }
-
-  const best = scores.reduce((a, b) =>
-    a.classification_accuracy > b.classification_accuracy ? a : b
-  );
-
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <div className="mb-12">
-        <h1 className="text-3xl font-bold">Compost & Recycling Waste Identifier</h1>
-        <p className="mt-2 text-gray-400">
-          Comparing {scores.length} vision models on compostable / recyclable /
-          landfill waste classification
+    <main className="mx-auto max-w-5xl px-6 py-16">
+      {/* Hero */}
+      <div className="mb-16">
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          NYC Waste Classifier
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-gray-400">
+          Using computer vision to measure how much of New York City&apos;s
+          public waste is actually compostable or recyclable — and using that
+          data to drive smarter infrastructure decisions.
         </p>
+        <div className="mt-6 flex gap-4">
+          <Link
+            href="/results"
+            className="rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-200 transition-colors"
+          >
+            View Eval Results
+          </Link>
+          <a
+            href="https://github.com/addabjork/compost-identification"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-gray-700 px-5 py-2.5 text-sm font-medium text-gray-300 hover:border-gray-500 transition-colors"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
 
-      {/* Summary cards */}
-      <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <MetricCard label="Models tested" value={String(scores.length)} />
-        <MetricCard label="Best model" value={best.model} />
-        <MetricCard
-          label="Best classification"
-          value={pct(best.classification_accuracy)}
-        />
-        <MetricCard
-          label="Photos evaluated"
-          value={String(best.per_photo.length)}
-        />
-      </div>
+      {/* Problem */}
+      <section className="mb-16">
+        <SectionHeading>The Problem</SectionHeading>
+        <p className="max-w-3xl leading-relaxed text-gray-300">
+          A significant portion of public waste in NYC is compostable or
+          recyclable but is currently treated as general landfill trash. There
+          is no systematic way to measure how much recoverable material flows
+          through the city&apos;s public trash cans, and no data-driven
+          mechanism to inform interventions — whether that&apos;s bin
+          placement, sorting infrastructure, or policy changes.
+        </p>
+      </section>
 
-      {/* Main comparison table */}
-      <section className="mb-12">
-        <h2 className="mb-4 text-xl font-semibold">Model Comparison</h2>
+      {/* Approach - Three Phases */}
+      <section className="mb-16">
+        <SectionHeading>Approach</SectionHeading>
+        <div className="grid gap-6 sm:grid-cols-3">
+          <PhaseCard phase="Phase 1" title="Model Evaluation" status="current">
+            <p>
+              Benchmark Claude, GPT-4o, and Gemini on their ability to classify
+              waste items as compostable, recyclable, or landfill using NYC
+              rules. Build a scoring dashboard to compare accuracy.
+            </p>
+          </PhaseCard>
+          <PhaseCard
+            phase="Phase 2"
+            title="Data Collection Pipeline"
+            status="next"
+          >
+            <p>
+              Field teams photograph public trash cans across NYC. Images are
+              classified and aggregated to map waste composition by location,
+              informing where to place compost and recycling bins.
+            </p>
+          </PhaseCard>
+          <PhaseCard phase="Phase 3" title="In-Bin Hardware" status="future">
+            <p>
+              Deploy camera modules inside public trash cans for real-time,
+              continuous waste classification — enabling live monitoring and
+              automated intervention recommendations.
+            </p>
+          </PhaseCard>
+        </div>
+      </section>
+
+      {/* Hardware */}
+      <section className="mb-16">
+        <SectionHeading>Hardware Prototype</SectionHeading>
+        <div className="grid items-center gap-8 sm:grid-cols-2">
+          <div>
+            <p className="leading-relaxed text-gray-300">
+              A compact, weatherproof camera module designed to retrofit into
+              existing city trash cans. Triggered by motion or lid opening, it
+              captures images and uploads them to the classification server over
+              cellular or WiFi.
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-gray-400">
+              <li>Weatherproof enclosure</li>
+              <li>Cellular / WiFi connectivity</li>
+              <li>Battery or solar powered</li>
+              <li>Motion-triggered capture</li>
+              <li>Sub-5-second classification turnaround</li>
+            </ul>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+            <Image
+              src="/b04a7d2c2ae8890b.png"
+              alt="Camera module prototype — compact cylindrical enclosure with lens and Raspberry Pi board visible in cutaway view"
+              width={800}
+              height={500}
+              className="w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Classification Taxonomy */}
+      <section className="mb-16">
+        <SectionHeading>NYC Classification Rules</SectionHeading>
+        <p className="mb-6 text-gray-400">
+          Items are classified per NYC Department of Sanitation rules into three
+          categories:
+        </p>
         <div className="overflow-x-auto rounded-lg border border-gray-800">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-800 bg-gray-900 text-left text-xs uppercase tracking-wide text-gray-400">
-                <th className="px-4 py-3">Model</th>
-                <th className="px-4 py-3">Items Found</th>
-                <th className="px-4 py-3">Class. Acc</th>
-                <th className="px-4 py-3 text-green-500">Comp R</th>
-                <th className="px-4 py-3 text-green-500">Comp P</th>
-                <th className="px-4 py-3 text-blue-500">Recy R</th>
-                <th className="px-4 py-3 text-blue-500">Recy P</th>
-                <th className="px-4 py-3 text-gray-500">Land R</th>
-                <th className="px-4 py-3 text-gray-500">Land P</th>
-                <th className="px-4 py-3">Avg Latency</th>
-                <th className="px-4 py-3">Fail Rate</th>
+                <th className="px-4 py-3">Category</th>
+                <th className="px-4 py-3">Examples</th>
               </tr>
             </thead>
             <tbody>
-              {scores.map((s) => (
-                <tr
-                  key={s.model}
-                  className="border-b border-gray-800/50 hover:bg-gray-900/50"
-                >
-                  <td className="px-4 py-3 font-medium">{s.model}</td>
-                  <td className={`px-4 py-3 ${colorForScore(s.items_identified)}`}>
-                    {pct(s.items_identified)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.classification_accuracy)}`}>
-                    {pct(s.classification_accuracy)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.compostable.recall)}`}>
-                    {pct(s.compostable.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.compostable.precision)}`}>
-                    {pct(s.compostable.precision)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.recyclable.recall)}`}>
-                    {pct(s.recyclable.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.recyclable.precision)}`}>
-                    {pct(s.recyclable.precision)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.landfill.recall)}`}>
-                    {pct(s.landfill.recall)}
-                  </td>
-                  <td className={`px-4 py-3 ${colorForScore(s.landfill.precision)}`}>
-                    {pct(s.landfill.precision)}
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {Math.round(s.avg_latency_ms)}ms
-                  </td>
-                  <td className={`px-4 py-3 ${s.failure_rate > 0 ? "text-red-400" : "text-green-400"}`}>
-                    {pct(s.failure_rate)}
-                  </td>
-                </tr>
-              ))}
+              <TaxonomyRow
+                color="green"
+                category="Compostable"
+                examples="Food scraps (fruit, vegetables, meat, bones, dairy), coffee grounds/filters, tea bags, food-soiled paper (napkins, pizza boxes), yard waste"
+              />
+              <TaxonomyRow
+                color="blue"
+                category="Recyclable"
+                examples="Paper & cardboard, aluminum/food cans, tin foil, glass bottles/jars, plastic bottles & containers with recycling symbol, paper bags"
+              />
+              <TaxonomyRow
+                color="gray"
+                category="Landfill"
+                examples="Plastic bags/film, styrofoam, plastic utensils/straws, coated paper cups, dirty paper towels, diapers, clothing, ceramics, batteries, electronics"
+              />
             </tbody>
           </table>
         </div>
       </section>
 
-      {/* Per-photo breakdowns */}
-      {scores.map((modelScore) => (
-        <section key={modelScore.model} className="mb-12">
-          <h2 className="mb-4 text-xl font-semibold">
-            {modelScore.model} — Per-Photo Results
-          </h2>
-          <div className="overflow-x-auto rounded-lg border border-gray-800">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-800 bg-gray-900 text-left text-xs uppercase tracking-wide text-gray-400">
-                  <th className="px-4 py-3">Photo</th>
-                  <th className="px-4 py-3">Matched</th>
-                  <th className="px-4 py-3">Detected</th>
-                  <th className="px-4 py-3">Truth</th>
-                  <th className="px-4 py-3">Items Found</th>
-                  <th className="px-4 py-3">Class. Acc</th>
-                  <th className="px-4 py-3 text-green-500">Comp R</th>
-                  <th className="px-4 py-3 text-green-500">Comp P</th>
-                  <th className="px-4 py-3 text-blue-500">Recy R</th>
-                  <th className="px-4 py-3 text-blue-500">Recy P</th>
-                  <th className="px-4 py-3 text-gray-500">Land R</th>
-                  <th className="px-4 py-3 text-gray-500">Land P</th>
-                </tr>
-              </thead>
-              <tbody>
-                {modelScore.per_photo.map((p) => (
-                  <tr
-                    key={p.photo_id}
-                    className="border-b border-gray-800/50 hover:bg-gray-900/50"
-                  >
-                    <td className="px-4 py-3 font-mono text-xs">{p.photo_id}</td>
-                    <td className="px-4 py-3">{p.matched}</td>
-                    <td className="px-4 py-3">{p.detected_count}</td>
-                    <td className="px-4 py-3">{p.ground_truth_count}</td>
-                    <td className={`px-4 py-3 ${colorForScore(p.items_identified)}`}>
-                      {pct(p.items_identified)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.classification_accuracy)}`}>
-                      {pct(p.classification_accuracy)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.compostable.recall)}`}>
-                      {pct(p.compostable.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.compostable.precision)}`}>
-                      {pct(p.compostable.precision)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.recyclable.recall)}`}>
-                      {pct(p.recyclable.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.recyclable.precision)}`}>
-                      {pct(p.recyclable.precision)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.landfill.recall)}`}>
-                      {pct(p.landfill.recall)}
-                    </td>
-                    <td className={`px-4 py-3 ${colorForScore(p.landfill.precision)}`}>
-                      {pct(p.landfill.precision)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* Intervention Logic */}
+      <section className="mb-16">
+        <SectionHeading>Data-Driven Interventions</SectionHeading>
+        <p className="mb-6 text-gray-400">
+          Based on the classification data collected at each location, the
+          system recommends specific actions:
+        </p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-lg border border-green-500/30 bg-green-950/10 p-5">
+            <p className="text-3xl font-bold text-green-400">&gt;30%</p>
+            <p className="mt-1 text-sm text-green-300">compostable</p>
+            <p className="mt-3 text-sm text-gray-400">
+              Recommend compost bin placement at this location
+            </p>
           </div>
-        </section>
-      ))}
+          <div className="rounded-lg border border-blue-500/30 bg-blue-950/10 p-5">
+            <p className="text-3xl font-bold text-blue-400">&gt;40%</p>
+            <p className="mt-1 text-sm text-blue-300">recyclable</p>
+            <p className="mt-3 text-sm text-gray-400">
+              Recommend recycling bin placement at this location
+            </p>
+          </div>
+          <div className="rounded-lg border border-amber-500/30 bg-amber-950/10 p-5">
+            <p className="text-3xl font-bold text-amber-400">&gt;60%</p>
+            <p className="mt-1 text-sm text-amber-300">
+              recoverable (combined)
+            </p>
+            <p className="mt-3 text-sm text-gray-400">
+              Recommend industrial sorting investment city-wide
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack */}
+      <section className="mb-16">
+        <SectionHeading>Technical Stack</SectionHeading>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {[
+            { label: "Vision Models", value: "Claude Sonnet, GPT-4o, Gemini Flash" },
+            { label: "Eval Scripts", value: "TypeScript, ts-node" },
+            { label: "Dashboard", value: "Next.js, Tailwind CSS" },
+            { label: "Hosting", value: "Vercel" },
+            { label: "Data Storage", value: "Postgres (Phase 2)" },
+            { label: "Hardware", value: "Camera module + Raspberry Pi (Phase 3)" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="flex items-baseline justify-between rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-3"
+            >
+              <span className="text-sm text-gray-400">{item.label}</span>
+              <span className="text-sm font-medium text-gray-200">
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+        <p>NYC Waste Classifier — Columbia University</p>
+      </footer>
     </main>
   );
 }

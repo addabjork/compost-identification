@@ -1,0 +1,137 @@
+[
+  {
+    "label": "seals against",
+    "source": "main_enclosure",
+    "target": "enclosure_gasket"
+  },
+  {
+    "label": "sealed into opening with gasket",
+    "source": "main_enclosure",
+    "target": "clear_polycarbonate_window"
+  },
+  {
+    "label": "accepts M3 screws for lid",
+    "source": "main_enclosure",
+    "target": "m3_screws_enclosure_lid"
+  },
+  {
+    "label": "mounted inside with M2 screws",
+    "source": "main_enclosure",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "inserted into posts/bosses",
+    "source": "m3_threaded_inserts",
+    "target": "main_enclosure"
+  },
+  {
+    "label": "inserted into posts/bosses",
+    "source": "m3_threaded_inserts",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "camera_module_mount",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "mcu_mount_plate",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "cellular_modem_mount",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "battery_pack_holder",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "battery_management_mount",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "buck_converter_mount",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mounted with M2 screws",
+    "source": "ai_accelerator_mount",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "threaded into",
+    "source": "m2_screws_internal_mounts",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "press-fit around camera side",
+    "source": "camera_lens_shroud",
+    "target": "clear_polycarbonate_window"
+  },
+  {
+    "label": "threaded through",
+    "source": "trashcan_clamp_top",
+    "target": "m5_thumb_screw"
+  },
+  {
+    "label": "interfaces with",
+    "source": "trashcan_clamp_top",
+    "target": "trashcan_clamp_bottom"
+  },
+  {
+    "label": "retains M5 thumb screw",
+    "source": "trashcan_clamp_bottom",
+    "target": "m5_nut"
+  },
+  {
+    "label": "attached via M3 screws",
+    "source": "main_enclosure",
+    "target": "trashcan_clamp_top"
+  },
+  {
+    "label": "mounted with adhesive/small screw",
+    "source": "cable_management_clip",
+    "target": "internal_base_plate"
+  },
+  {
+    "label": "mount",
+    "source": "camera_module_mount",
+    "target": "camera_module"
+  },
+  {
+    "label": "mount",
+    "source": "mcu_mount_plate",
+    "target": "main_mcu"
+  },
+  {
+    "label": "mount",
+    "source": "cellular_modem_mount",
+    "target": "cellular_modem"
+  },
+  {
+    "label": "mount",
+    "source": "battery_pack_holder",
+    "target": "battery_pack"
+  },
+  {
+    "label": "mount",
+    "source": "battery_management_mount",
+    "target": "battery_management"
+  },
+  {
+    "label": "mount",
+    "source": "buck_converter_mount",
+    "target": "buck_converter"
+  },
+  {
+    "label": "mount",
+    "source": "ai_accelerator_mount",
+    "target": "ai_accelerator"
+  }
+]
