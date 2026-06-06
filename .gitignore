@@ -2,6 +2,7 @@ node_modules/
 dist/
 .env
 .next/
+.obsidian/
 evals/results/claude/
 evals/results/gpt4o/
 evals/results/gemini/
