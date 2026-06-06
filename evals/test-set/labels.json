@@ -1,32 +1,58 @@
 [
   {
-    "id": "sample-01",
-    "photo": "sample-01.jpeg",
+    "id": "photo_01",
+    "photo": "photo_01.webp",
     "ground_truth": [
-      {
-        "name": "banana peel",
-        "compostable": true
-      },
-      {
-        "name": "plastic water bottle",
-        "compostable": false
-      },
-      {
-        "name": "coffee grounds",
-        "compostable": true
-      },
-      {
-        "name": "styrofoam container",
-        "compostable": false
-      },
-      {
-        "name": "egg shells",
-        "compostable": true
-      },
-      {
-        "name": "aluminum can",
-        "compostable": false
-      }
+      { "name": "plastic bags", "compostable": false },
+      { "name": "plastic bottles", "compostable": false },
+      { "name": "food waste", "compostable": true },
+      { "name": "clothing fabric", "compostable": false },
+      { "name": "glass bottles", "compostable": false },
+      { "name": "metal cans", "compostable": false },
+      { "name": "cardboard", "compostable": true },
+      { "name": "organic waste", "compostable": true }
+    ]
+  },
+  {
+    "id": "photo_02",
+    "photo": "photo_02.jpg",
+    "ground_truth": [
+      { "name": "plastic bags", "compostable": false },
+      { "name": "paper coffee cup", "compostable": false },
+      { "name": "aluminum cans", "compostable": false },
+      { "name": "plastic straws", "compostable": false },
+      { "name": "paper bag", "compostable": true },
+      { "name": "food scraps", "compostable": true },
+      { "name": "cardboard box", "compostable": true }
+    ]
+  },
+  {
+    "id": "photo_03",
+    "photo": "photo_03.jpg",
+    "ground_truth": [
+      { "name": "plastic water bottles", "compostable": false },
+      { "name": "plastic cups", "compostable": false },
+      { "name": "aluminum cans", "compostable": false },
+      { "name": "plastic bags", "compostable": false },
+      { "name": "cardboard box", "compostable": true },
+      { "name": "paper napkins", "compostable": true },
+      { "name": "plastic straws", "compostable": false },
+      { "name": "glass bottles", "compostable": false },
+      { "name": "styrofoam containers", "compostable": false }
+    ]
+  },
+  {
+    "id": "photo_04",
+    "photo": "photo_04.webp",
+    "ground_truth": [
+      { "name": "plastic cups", "compostable": false },
+      { "name": "plastic bags", "compostable": false },
+      { "name": "styrofoam containers", "compostable": false },
+      { "name": "plastic straws", "compostable": false },
+      { "name": "food waste", "compostable": true },
+      { "name": "plastic utensils", "compostable": false },
+      { "name": "plastic bottles", "compostable": false },
+      { "name": "cardboard", "compostable": true }
     ]
   }
 ]
