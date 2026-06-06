@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.next/
+evals/results/claude/
+evals/results/gpt4o/
+evals/results/gemini/
+.vercel

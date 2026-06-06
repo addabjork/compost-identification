@@ -1,0 +1,33 @@
+{
+  "name": "compost-waste-identifier",
+  "version": "1.0.0",
+  "description": "Eval suite for compost vs non-compost waste identification across vision models",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "eval": "npx ts-node scripts/run-image-evals.ts",
+    "eval:claude": "npx ts-node scripts/run-image-evals.ts --model claude",
+    "eval:gpt4o": "npx ts-node scripts/run-image-evals.ts --model gpt4o",
+    "eval:gemini": "npx ts-node scripts/run-image-evals.ts --model gemini",
+    "score": "npx ts-node scripts/score-results.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.3.1",
+    "next": "^15",
+    "openai": "^6.34.0",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

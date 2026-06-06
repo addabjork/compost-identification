@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sample-01",
+    "photo": "sample-01.jpeg",
+    "ground_truth": [
+      {
+        "name": "banana peel",
+        "compostable": true
+      },
+      {
+        "name": "plastic water bottle",
+        "compostable": false
+      },
+      {
+        "name": "coffee grounds",
+        "compostable": true
+      },
+      {
+        "name": "styrofoam container",
+        "compostable": false
+      },
+      {
+        "name": "egg shells",
+        "compostable": true
+      },
+      {
+        "name": "aluminum can",
+        "compostable": false
+      }
+    ]
+  }
+]
