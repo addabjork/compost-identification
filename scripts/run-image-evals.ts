@@ -2,7 +2,7 @@
  * run-image-evals.ts
  *
  * Sends each photo in evals/test-set/photos/ to 3 vision models and saves raw outputs.
- * Each model classifies items in the image as compostable or not compostable.
+ * Each model classifies items in the image as compostable, recyclable, or landfill.
  *
  * Usage:
  *   npx ts-node scripts/run-image-evals.ts
@@ -32,22 +32,23 @@ const RESULTS_DIR = path.resolve(__dirname, '../evals/results');
 const PROMPT = `Analyze this photo and identify all visible waste items.
 
 For each item return:
-- name: descriptive name of the item (e.g. "banana peel", "plastic water bottle", "coffee grounds")
-- compostable: true if the item can go in a home compost bin, false if not
-- reason: brief explanation of why it is or isn't compostable
+- name: descriptive name of the item (e.g. "banana peel", "plastic water bottle", "aluminum can")
+- category: one of "compostable", "recyclable", or "landfill"
+- reason: brief explanation of the classification
 
-Compostable items include: fruit/vegetable scraps, coffee grounds/filters, tea bags (paper), eggshells, yard waste, paper towels, cardboard (uncoated), leaves, grass clippings, nutshells, wood chips.
-
-NOT compostable items include: plastic, metal, glass, styrofoam, treated/coated paper, meat, dairy, oils/fats, pet waste, diseased plants, synthetic materials.
+Category definitions:
+- compostable: items that break down in a compost bin — fruit/vegetable scraps, coffee grounds/filters, tea bags (paper), eggshells, yard waste, paper towels, uncoated paper, leaves, grass clippings, nutshells, wood chips, food-soiled paper (napkins)
+- recyclable: items accepted by municipal recycling — clean plastic bottles/containers, aluminum/tin cans, glass bottles/jars, cardboard, clean paper, metal foil trays
+- landfill: everything else — plastic bags/film, styrofoam, coated/waxed paper, plastic utensils/straws, synthetic materials, clothing, electronics, food-contaminated plastic, mixed/non-separable waste
 
 Return ONLY a valid JSON array, no other text.
-Example: [{"name":"banana peel","compostable":true,"reason":"Fruit scraps break down easily in compost"},{"name":"plastic bag","compostable":false,"reason":"Plastic does not biodegrade in a compost bin"}]`;
+Example: [{"name":"banana peel","category":"compostable","reason":"Fruit scraps break down in compost"},{"name":"plastic bag","category":"landfill","reason":"Plastic film is not recyclable or compostable"},{"name":"aluminum can","category":"recyclable","reason":"Metal cans are accepted by municipal recycling"}]`;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type DetectedItem = {
   name: string;
-  compostable: boolean;
+  category: 'compostable' | 'recyclable' | 'landfill';
   reason: string;
 };
 

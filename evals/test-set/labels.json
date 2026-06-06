@@ -3,56 +3,56 @@
     "id": "photo_01",
     "photo": "photo_01.webp",
     "ground_truth": [
-      { "name": "plastic bags", "compostable": false },
-      { "name": "plastic bottles", "compostable": false },
-      { "name": "food waste", "compostable": true },
-      { "name": "clothing fabric", "compostable": false },
-      { "name": "glass bottles", "compostable": false },
-      { "name": "metal cans", "compostable": false },
-      { "name": "cardboard", "compostable": true },
-      { "name": "organic waste", "compostable": true }
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "plastic bottles", "category": "recyclable" },
+      { "name": "food waste", "category": "compostable" },
+      { "name": "clothing fabric", "category": "landfill" },
+      { "name": "glass bottles", "category": "recyclable" },
+      { "name": "metal cans", "category": "recyclable" },
+      { "name": "cardboard", "category": "recyclable" },
+      { "name": "organic waste", "category": "compostable" }
     ]
   },
   {
     "id": "photo_02",
     "photo": "photo_02.jpg",
     "ground_truth": [
-      { "name": "plastic bags", "compostable": false },
-      { "name": "paper coffee cup", "compostable": false },
-      { "name": "aluminum cans", "compostable": false },
-      { "name": "plastic straws", "compostable": false },
-      { "name": "paper bag", "compostable": true },
-      { "name": "food scraps", "compostable": true },
-      { "name": "cardboard box", "compostable": true }
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "paper coffee cup", "category": "landfill" },
+      { "name": "aluminum cans", "category": "recyclable" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "paper bag", "category": "compostable" },
+      { "name": "food scraps", "category": "compostable" },
+      { "name": "cardboard box", "category": "recyclable" }
     ]
   },
   {
     "id": "photo_03",
     "photo": "photo_03.jpg",
     "ground_truth": [
-      { "name": "plastic water bottles", "compostable": false },
-      { "name": "plastic cups", "compostable": false },
-      { "name": "aluminum cans", "compostable": false },
-      { "name": "plastic bags", "compostable": false },
-      { "name": "cardboard box", "compostable": true },
-      { "name": "paper napkins", "compostable": true },
-      { "name": "plastic straws", "compostable": false },
-      { "name": "glass bottles", "compostable": false },
-      { "name": "styrofoam containers", "compostable": false }
+      { "name": "plastic water bottles", "category": "recyclable" },
+      { "name": "plastic cups", "category": "landfill" },
+      { "name": "aluminum cans", "category": "recyclable" },
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "cardboard box", "category": "recyclable" },
+      { "name": "paper napkins", "category": "compostable" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "glass bottles", "category": "recyclable" },
+      { "name": "styrofoam containers", "category": "landfill" }
     ]
   },
   {
     "id": "photo_04",
     "photo": "photo_04.webp",
     "ground_truth": [
-      { "name": "plastic cups", "compostable": false },
-      { "name": "plastic bags", "compostable": false },
-      { "name": "styrofoam containers", "compostable": false },
-      { "name": "plastic straws", "compostable": false },
-      { "name": "food waste", "compostable": true },
-      { "name": "plastic utensils", "compostable": false },
-      { "name": "plastic bottles", "compostable": false },
-      { "name": "cardboard", "compostable": true }
+      { "name": "plastic cups", "category": "landfill" },
+      { "name": "plastic bags", "category": "landfill" },
+      { "name": "styrofoam containers", "category": "landfill" },
+      { "name": "plastic straws", "category": "landfill" },
+      { "name": "food waste", "category": "compostable" },
+      { "name": "plastic utensils", "category": "landfill" },
+      { "name": "plastic bottles", "category": "recyclable" },
+      { "name": "cardboard", "category": "recyclable" }
     ]
   }
 ]

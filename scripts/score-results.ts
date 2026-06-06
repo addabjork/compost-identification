@@ -2,7 +2,8 @@
  * score-results.ts
  *
  * Compares model outputs in evals/results/ against evals/test-set/labels.json
- * and computes classification accuracy, recall, precision for compostable identification.
+ * and computes classification accuracy, plus per-category (compostable, recyclable,
+ * landfill) recall and precision.
  *
  * Usage:
  *   npx ts-node scripts/score-results.ts
@@ -18,12 +19,14 @@ const RESULTS_DIR = path.resolve(__dirname, '../evals/results');
 const SCORES_PATH = path.resolve(__dirname, '../evals/results/scores.json');
 
 const MODELS = ['claude', 'gpt4o', 'gemini'];
+const CATEGORIES = ['compostable', 'recyclable', 'landfill'] as const;
+type Category = typeof CATEGORIES[number];
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type GroundTruthItem = {
   name: string;
-  compostable: boolean;
+  category: Category;
 };
 
 type LabelEntry = {
@@ -34,7 +37,7 @@ type LabelEntry = {
 
 type DetectedItem = {
   name: string;
-  compostable: boolean;
+  category: string;
   reason: string;
 };
 
@@ -45,14 +48,18 @@ type ModelResult = {
   latency_ms: number;
 };
 
+type CategoryMetrics = {
+  recall: number;
+  precision: number;
+};
+
 type PhotoScore = {
   photo_id: string;
   items_identified: number;
   classification_accuracy: number;
-  compostable_recall: number;
-  compostable_precision: number;
-  non_compostable_recall: number;
-  non_compostable_precision: number;
+  compostable: CategoryMetrics;
+  recyclable: CategoryMetrics;
+  landfill: CategoryMetrics;
   matched: number;
   ground_truth_count: number;
   detected_count: number;
@@ -62,10 +69,9 @@ type ModelScore = {
   model: string;
   items_identified: number;
   classification_accuracy: number;
-  compostable_recall: number;
-  compostable_precision: number;
-  non_compostable_recall: number;
-  non_compostable_precision: number;
+  compostable: CategoryMetrics;
+  recyclable: CategoryMetrics;
+  landfill: CategoryMetrics;
   avg_latency_ms: number;
   failure_rate: number;
   per_photo: PhotoScore[];
@@ -97,6 +103,29 @@ function namesMatch(detected: string, truth: string): boolean {
 
 // ── Scoring ───────────────────────────────────────────────────────────────────
 
+function computeCategoryMetrics(
+  matched: { detected: DetectedItem; truth: GroundTruthItem }[],
+  allDetected: DetectedItem[],
+  allTruth: GroundTruthItem[],
+  category: Category,
+): CategoryMetrics {
+  // Recall: of all truly X items, how many did the model find AND correctly label as X?
+  const trueCount = allTruth.filter((g) => g.category === category).length;
+  const correctlyFound = matched.filter(
+    (m) => m.truth.category === category && m.detected.category === category
+  ).length;
+  const recall = trueCount > 0 ? correctlyFound / trueCount : 0;
+
+  // Precision: of items the model labeled X, how many truly are X?
+  const detectedCount = allDetected.filter((d) => d.category === category).length;
+  const matchedCorrect = matched.filter(
+    (m) => m.detected.category === category && m.truth.category === category
+  ).length;
+  const precision = detectedCount > 0 ? matchedCorrect / detectedCount : 0;
+
+  return { recall, precision };
+}
+
 function scorePhoto(detected: DetectedItem[], groundTruth: GroundTruthItem[]): PhotoScore {
   const matched: { detected: DetectedItem; truth: GroundTruthItem }[] = [];
   const usedTruth = new Set<number>();
@@ -115,55 +144,19 @@ function scorePhoto(detected: DetectedItem[], groundTruth: GroundTruthItem[]): P
   const matchCount = matched.length;
   const items_identified = groundTruth.length > 0 ? matchCount / groundTruth.length : 0;
 
-  // Classification accuracy: of matched items, how many got compostable right?
+  // Classification accuracy: of matched items, how many got category right?
   const correctClassifications = matched.filter(
-    (m) => m.detected.compostable === m.truth.compostable
+    (m) => m.detected.category === m.truth.category
   ).length;
   const classification_accuracy = matchCount > 0 ? correctClassifications / matchCount : 0;
-
-  // Compostable recall: of all truly compostable items, how many did the model find AND correctly label?
-  const trueCompostable = groundTruth.filter((g) => g.compostable);
-  const correctlyFoundCompostable = matched.filter(
-    (m) => m.truth.compostable && m.detected.compostable
-  ).length;
-  const compostable_recall = trueCompostable.length > 0
-    ? correctlyFoundCompostable / trueCompostable.length
-    : 0;
-
-  // Compostable precision: of items the model labeled compostable, how many truly are?
-  const detectedCompostable = detected.filter((d) => d.compostable);
-  const matchedCompostableCorrect = matched.filter(
-    (m) => m.detected.compostable && m.truth.compostable
-  ).length;
-  const compostable_precision = detectedCompostable.length > 0
-    ? matchedCompostableCorrect / detectedCompostable.length
-    : 0;
-
-  // Non-compostable recall & precision (same logic, inverted)
-  const trueNonCompostable = groundTruth.filter((g) => !g.compostable);
-  const correctlyFoundNonCompostable = matched.filter(
-    (m) => !m.truth.compostable && !m.detected.compostable
-  ).length;
-  const non_compostable_recall = trueNonCompostable.length > 0
-    ? correctlyFoundNonCompostable / trueNonCompostable.length
-    : 0;
-
-  const detectedNonCompostable = detected.filter((d) => !d.compostable);
-  const matchedNonCompostableCorrect = matched.filter(
-    (m) => !m.detected.compostable && !m.truth.compostable
-  ).length;
-  const non_compostable_precision = detectedNonCompostable.length > 0
-    ? matchedNonCompostableCorrect / detectedNonCompostable.length
-    : 0;
 
   return {
     photo_id: '',
     items_identified,
     classification_accuracy,
-    compostable_recall,
-    compostable_precision,
-    non_compostable_recall,
-    non_compostable_precision,
+    compostable: computeCategoryMetrics(matched, detected, groundTruth, 'compostable'),
+    recyclable: computeCategoryMetrics(matched, detected, groundTruth, 'recyclable'),
+    landfill: computeCategoryMetrics(matched, detected, groundTruth, 'landfill'),
     matched: matchCount,
     ground_truth_count: groundTruth.length,
     detected_count: detected.length,
@@ -175,11 +168,20 @@ function avg(nums: number[]): number {
   return nums.reduce((a, b) => a + b, 0) / nums.length;
 }
 
+function avgMetrics(scores: PhotoScore[], category: Category): CategoryMetrics {
+  return {
+    recall: avg(scores.map((s) => s[category].recall)),
+    precision: avg(scores.map((s) => s[category].precision)),
+  };
+}
+
 function scoreModel(model: string, labels: LabelEntry[]): ModelScore {
   const resultsDir = path.join(RESULTS_DIR, model);
   const photoScores: PhotoScore[] = [];
   const latencies: number[] = [];
   let failures = 0;
+
+  const emptyMetrics: CategoryMetrics = { recall: 0, precision: 0 };
 
   for (const label of labels) {
     const resultPath = path.join(resultsDir, `${label.id}.json`);
@@ -199,10 +201,9 @@ function scoreModel(model: string, labels: LabelEntry[]): ModelScore {
         photo_id: label.id,
         items_identified: 0,
         classification_accuracy: 0,
-        compostable_recall: 0,
-        compostable_precision: 0,
-        non_compostable_recall: 0,
-        non_compostable_precision: 0,
+        compostable: emptyMetrics,
+        recyclable: emptyMetrics,
+        landfill: emptyMetrics,
         matched: 0,
         ground_truth_count: label.ground_truth.length,
         detected_count: 0,
@@ -218,10 +219,9 @@ function scoreModel(model: string, labels: LabelEntry[]): ModelScore {
     model,
     items_identified: avg(photoScores.map((s) => s.items_identified)),
     classification_accuracy: avg(photoScores.map((s) => s.classification_accuracy)),
-    compostable_recall: avg(photoScores.map((s) => s.compostable_recall)),
-    compostable_precision: avg(photoScores.map((s) => s.compostable_precision)),
-    non_compostable_recall: avg(photoScores.map((s) => s.non_compostable_recall)),
-    non_compostable_precision: avg(photoScores.map((s) => s.non_compostable_precision)),
+    compostable: avgMetrics(photoScores, 'compostable'),
+    recyclable: avgMetrics(photoScores, 'recyclable'),
+    landfill: avgMetrics(photoScores, 'landfill'),
     avg_latency_ms: avg(latencies),
     failure_rate: failures / labels.length,
     per_photo: photoScores,
@@ -260,25 +260,29 @@ function main() {
   console.log(
     pad('Model', 10) +
     pad('Items ID\'d', 12) +
-    pad('Class Acc', 12) +
-    pad('Comp Recall', 13) +
-    pad('Comp Prec', 12) +
-    pad('NonC Recall', 13) +
-    pad('NonC Prec', 12) +
+    pad('Class Acc', 11) +
+    pad('Comp R', 8) +
+    pad('Comp P', 8) +
+    pad('Recy R', 8) +
+    pad('Recy P', 8) +
+    pad('Land R', 8) +
+    pad('Land P', 8) +
     pad('Avg ms', 10) +
     'Fail%',
   );
-  console.log('─'.repeat(96));
+  console.log('─'.repeat(103));
 
   for (const s of scores) {
     console.log(
       pad(s.model, 10) +
       pad(pct(s.items_identified), 12) +
-      pad(pct(s.classification_accuracy), 12) +
-      pad(pct(s.compostable_recall), 13) +
-      pad(pct(s.compostable_precision), 12) +
-      pad(pct(s.non_compostable_recall), 13) +
-      pad(pct(s.non_compostable_precision), 12) +
+      pad(pct(s.classification_accuracy), 11) +
+      pad(pct(s.compostable.recall), 8) +
+      pad(pct(s.compostable.precision), 8) +
+      pad(pct(s.recyclable.recall), 8) +
+      pad(pct(s.recyclable.precision), 8) +
+      pad(pct(s.landfill.recall), 8) +
+      pad(pct(s.landfill.precision), 8) +
       pad(Math.round(s.avg_latency_ms), 10) +
       pct(s.failure_rate),
     );
