@@ -1,0 +1,305 @@
+[
+  {
+    "model": "claude",
+    "items_identified": 0.8070436507936508,
+    "classification_accuracy": 0.6538690476190476,
+    "compostable": {
+      "recall": 0.625,
+      "precision": 0.3
+    },
+    "recyclable": {
+      "recall": 0.3333333333333333,
+      "precision": 0.18333333333333335
+    },
+    "landfill": {
+      "recall": 0.625,
+      "precision": 0.23472222222222222
+    },
+    "avg_latency_ms": 35257.5,
+    "failure_rate": 0,
+    "per_photo": [
+      {
+        "photo_id": "photo_01",
+        "items_identified": 0.75,
+        "classification_accuracy": 0.3333333333333333,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.08333333333333333
+        },
+        "matched": 6,
+        "ground_truth_count": 8,
+        "detected_count": 14
+      },
+      {
+        "photo_id": "photo_02",
+        "items_identified": 0.7142857142857143,
+        "classification_accuracy": 0.8,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.3333333333333333,
+          "precision": 0.3333333333333333
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 0.3
+        },
+        "matched": 5,
+        "ground_truth_count": 7,
+        "detected_count": 13
+      },
+      {
+        "photo_id": "photo_03",
+        "items_identified": 0.8888888888888888,
+        "classification_accuracy": 0.625,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.2
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.4
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 8,
+        "ground_truth_count": 9,
+        "detected_count": 26
+      },
+      {
+        "photo_id": "photo_04",
+        "items_identified": 0.875,
+        "classification_accuracy": 0.8571428571428571,
+        "compostable": {
+          "recall": 1,
+          "precision": 0.5
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 1,
+          "precision": 0.5555555555555556
+        },
+        "matched": 7,
+        "ground_truth_count": 8,
+        "detected_count": 11
+      }
+    ]
+  },
+  {
+    "model": "gpt4o",
+    "items_identified": 0.6150793650793651,
+    "classification_accuracy": 0.80625,
+    "compostable": {
+      "recall": 0.375,
+      "precision": 0.5
+    },
+    "recyclable": {
+      "recall": 0.3958333333333333,
+      "precision": 0.41666666666666663
+    },
+    "landfill": {
+      "recall": 0.5666666666666667,
+      "precision": 0.6041666666666666
+    },
+    "avg_latency_ms": 2544.5,
+    "failure_rate": 0,
+    "per_photo": [
+      {
+        "photo_id": "photo_01",
+        "items_identified": 0.375,
+        "classification_accuracy": 1,
+        "compostable": {
+          "recall": 0.5,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 0.25,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 3,
+        "ground_truth_count": 8,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "photo_02",
+        "items_identified": 0.5714285714285714,
+        "classification_accuracy": 0.75,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.3333333333333333,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0.6666666666666666,
+          "precision": 0.6666666666666666
+        },
+        "matched": 4,
+        "ground_truth_count": 7,
+        "detected_count": 5
+      },
+      {
+        "photo_id": "photo_03",
+        "items_identified": 0.8888888888888888,
+        "classification_accuracy": 0.875,
+        "compostable": {
+          "recall": 1,
+          "precision": 1
+        },
+        "recyclable": {
+          "recall": 1,
+          "precision": 0.6666666666666666
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "matched": 8,
+        "ground_truth_count": 9,
+        "detected_count": 11
+      },
+      {
+        "photo_id": "photo_04",
+        "items_identified": 0.625,
+        "classification_accuracy": 0.6,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0.6,
+          "precision": 0.75
+        },
+        "matched": 5,
+        "ground_truth_count": 8,
+        "detected_count": 6
+      }
+    ]
+  },
+  {
+    "model": "gemini",
+    "items_identified": 0.15625,
+    "classification_accuracy": 0.15,
+    "compostable": {
+      "recall": 0,
+      "precision": 0
+    },
+    "recyclable": {
+      "recall": 0.125,
+      "precision": 0.125
+    },
+    "landfill": {
+      "recall": 0.125,
+      "precision": 0.05
+    },
+    "avg_latency_ms": 14481.25,
+    "failure_rate": 0.75,
+    "per_photo": [
+      {
+        "photo_id": "photo_01",
+        "items_identified": 0.625,
+        "classification_accuracy": 0.6,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0.5,
+          "precision": 0.5
+        },
+        "landfill": {
+          "recall": 0.5,
+          "precision": 0.2
+        },
+        "matched": 5,
+        "ground_truth_count": 8,
+        "detected_count": 9
+      },
+      {
+        "photo_id": "photo_02",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 7,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "photo_03",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 9,
+        "detected_count": 0
+      },
+      {
+        "photo_id": "photo_04",
+        "items_identified": 0,
+        "classification_accuracy": 0,
+        "compostable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "recyclable": {
+          "recall": 0,
+          "precision": 0
+        },
+        "landfill": {
+          "recall": 0,
+          "precision": 0
+        },
+        "matched": 0,
+        "ground_truth_count": 8,
+        "detected_count": 0
+      }
+    ]
+  }
+]
